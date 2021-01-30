@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="com.devchie.videomaker">
+
+
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+
+    <application
+            android:name="com.devchie.videomaker.MyApplication"
+            android:allowBackup="true"
+            android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:requestLegacyExternalStorage="true"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name="com.devchie.photoeditor.activity.EditPhotoActivity">
+        </activity>
+
+
+        <meta-data
+                android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+                android:value="true"/>
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="@string/admob_app_id"/>
+
+        <activity
+                android:name="com.devchie.videomaker.activities.MainActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.ThankYouActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.SelectedPhotoActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.MovieActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.FinalActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.PlayVideoActivity"
+                android:launchMode="singleTop"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.devchie.videomaker.activities.SplashActivity"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

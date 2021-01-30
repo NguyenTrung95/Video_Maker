@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:visibility="gone"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@id/movie_add_float"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8.0dip"
+        android:layout_marginRight="8.0dip"
+        android:layout_marginBottom="8.0dip"
+        app:cardBackgroundColor="@color/selected_border"
+        app:cardCornerRadius="4.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="14.0dip"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:text="@string/next"
+            android:textColor="@color/black"
+            android:textSize="16.0sp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@id/tv_tip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/movie_add_float"
+        android:layout_marginBottom="16.0dip"
+        android:gravity="center"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:text="@string/drag_drop"
+        android:textColor="@color/un_selected_white" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@id/listPhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="80.0dip"
+        android:layout_above="@id/tv_tip"
+        android:layout_marginLeft="8.0dip"
+        android:layout_marginTop="8.0dip"
+        android:layout_marginRight="8.0dip"
+        android:layout_marginBottom="8.0dip"
+        android:background="@drawable/circle_action"
+        app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
+        app:cardCornerRadius="8.0dip">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recyclerPhoto"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" />
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@id/ads_container"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:layout_above="@id/listPhoto">
+
+        <FrameLayout
+            android:id="@id/admob_banner_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <FrameLayout
+                android:id="@id/admob_banner"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@id/fb_banner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@id/big_photo_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/ads_container"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8.0dip"
+        app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
+        app:cardCornerRadius="8.0dip">
+
+        <com.devchie.videomaker.view.RoundRectView
+            android:id="@id/llRecyclerView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@id/imageViewPhoto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </com.devchie.videomaker.view.RoundRectView>
+
+        <LinearLayout
+            android:id="@id/movie_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@id/btnRate"
+                android:layout_width="80.0dip"
+                android:layout_height="80.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_toLeftOf="@id/btn_new"
+                android:background="@drawable/circle_action"
+                android:paddingStart="12.0dip"
+                android:paddingEnd="12.0dip"
+                android:src="@drawable/ic_add"
+                android:backgroundTint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8.0dip"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="@string/select_photos"
+                android:textColor="@color/white"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@id/btnEditPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|right"
+            android:layout_margin="16.0dip"
+            android:src="@drawable/ic_edit_photo"
+            android:tint="@color/black"
+            android:visibility="gone"
+            app:backgroundTint="@color/selected_border"
+            app:rippleColor="#ffffffff" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@id/photo_add_float"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|left"
+            android:layout_margin="16.0dip"
+            android:src="@drawable/ic_add"
+            android:tint="@color/black"
+            android:visibility="gone"
+            app:backgroundTint="@color/selected_border"
+            app:rippleColor="#ffffffff" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

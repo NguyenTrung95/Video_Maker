@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/iv_thumb" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/ic_default_image" android:scaleType="centerCrop" />
+    <View android:background="@drawable/ic_cover_shade" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <View android:id="@id/mask" android:background="#45000000" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <FrameLayout android:layout_gravity="center|right|top" android:id="@id/checkView" android:paddingLeft="24.0dip" android:paddingTop="4.0dip" android:paddingRight="4.0dip" android:paddingBottom="24.0dip" android:clickable="true" android:descendantFocusability="blocksDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.lzy.imagepicker.view.SuperCheckBox android:enabled="false" android:id="@id/cb_check" android:focusable="false" android:clickable="false" android:duplicateParentState="true" android:layout_width="24.0dip" android:layout_height="24.0dip" />
+    </FrameLayout>
+</FrameLayout>

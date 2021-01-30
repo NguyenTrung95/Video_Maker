@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/bg_folder_item" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:background="@drawable/bg_image_folder" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="12.0dip">
+        <ImageView android:id="@id/iv_cover" android:layout_width="78.0dip" android:layout_height="78.0dip" android:layout_marginRight="6.0dip" android:layout_marginBottom="6.0dip" android:src="@drawable/ic_default_image" android:scaleType="centerCrop" />
+    </FrameLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <TextView android:textSize="14.0sp" android:textColor="#ff212121" android:id="@id/tv_folder_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/ip_all_images" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_image_count" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:text="A total of 0" />
+    </LinearLayout>
+    <ImageView android:id="@id/iv_folder_check" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_marginLeft="8.0dip" android:layout_marginRight="20.0dip" app:srcCompat="@drawable/ic_vector_check" />
+</LinearLayout>

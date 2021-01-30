@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frameLayoutEditMai"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/relativeEdit"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <include
+            android:id="@+id/toolBar"
+            layout="@layout/toolbar_edit_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/ads_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolBar">
+
+            <FrameLayout
+                android:id="@+id/admob_banner_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/admob_banner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fb_banner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolBar" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/rl_container"
+            android:layout_below="@+id/ads_container">
+
+            <com.devchie.photoeditor.photoeditor.PhotoEditorView
+                android:id="@+id/imgPhotoEditor"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+            <ProgressBar
+                android:id="@+id/progress_circular_loading"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_margin="150.0dip"
+                android:visibility="gone" />
+        </FrameLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_text_tool"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:visibility="gone">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpagerTextTools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/text_tool_bottom_container" />
+
+                <LinearLayout
+                    android:id="@+id/text_tool_bottom_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/test22"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/btnBackTextTools"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="true"
+                        android:src="@drawable/ic_arrow_back" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tablayoutTextTools"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@android:color/transparent"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabMode="scrollable" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_tool"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:visibility="visible">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpagerImageTools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tablayoutImageTools" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tablayoutImageTools"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/test22"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@android:color/transparent"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="scrollable" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_photo_tool"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/test"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvTransparency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="Transparency"
+                    android:textColor="@color/white" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_photo_transparency"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_toRightOf="@+id/tvTransparency"
+                    android:paddingRight="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/tvTransparency"
+                    android:layout_toLeftOf="@+id/seekbar_rotate"
+                    android:gravity="center"
+                    android:text="Rotate"
+                    android:textColor="@color/white" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_rotate"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/seekbar_photo_transparency"
+                    android:layout_toRightOf="@+id/tvTransparency"
+                    android:paddingRight="8dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_color_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/seekbar_rotate"
+                    android:orientation="vertical">
+
+                    <com.devchie.photoeditor.view.RoundFrameLayout
+                        android:id="@+id/btn_picker_color_photo"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="5dp"
+                        android:clickable="true"
+                        android:padding="3dp"
+                        app:rv_backgroundColor="@color/test"
+                        app:rv_cornerRadius="3dp"
+                        app:rv_strokeColor="@color/icChecked"
+                        app:rv_strokeWidth="2dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_pencil" />
+                    </com.devchie.photoeditor.view.RoundFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_color_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_toRightOf="@+id/btn_picker_color_photo" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dist="http://schemas.android.com/apk/distribution"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+            android:layout_width="match_parent" android:layout_height="130dp" android:background="@color/test11">
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerEmoji" android:layout_width="match_parent"
+                                               android:layout_height="match_parent"/>
+</LinearLayout>

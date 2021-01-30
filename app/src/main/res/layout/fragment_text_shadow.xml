@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dist="http://schemas.android.com/apk/distribution"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+              android:gravity="center" android:orientation="horizontal" android:background="@color/test"
+              android:layout_width="match_parent" android:layout_height="@dimen/text_tool_top_height">
+    <com.devchie.photoeditor.view.RoundFrameLayout
+        android:id="@+id/btn_picker_color_shadow" android:padding="3dp"
+                                                      android:clickable="true" android:layout_width="48dp"
+                                                      android:layout_height="48dp" android:layout_margin="12dp"
+                                                      app:rv_backgroundColor="#000000" app:rv_cornerRadius="3dp"
+                                                      app:rv_strokeColor="@color/icChecked" app:rv_strokeWidth="2dp">
+        <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" android:src="@drawable/ic_pencil"/>
+    </com.devchie.photoeditor.view.RoundFrameLayout>
+    <RelativeLayout android:gravity="center_vertical" android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <TextView android:textColor="@android:color/white" android:gravity="center" android:id="@+id/tvRadius"
+                  android:layout_width="wrap_content" android:layout_height="@dimen/text_tool_top_height_half"
+                  android:text="Radius"/>
+        <SeekBar android:id="@+id/sb_dRadius_shadow" android:layout_width="match_parent"
+                 android:layout_height="@dimen/text_tool_top_height_half" android:layout_marginLeft="8dp"
+                 android:layout_marginRight="8dp" android:layout_toRightOf="@+id/tvRadius"/>
+        <TextView android:textColor="@android:color/white" android:gravity="center" android:layout_width="wrap_content"
+                  android:layout_height="@dimen/text_tool_top_height_half" android:text="Dy"
+                  android:layout_below="@+id/tvRadius"/>
+        <SeekBar android:id="@+id/sb_Dy_shadow" android:layout_width="match_parent"
+                 android:layout_height="@dimen/text_tool_top_height_half" android:layout_marginLeft="8dp"
+                 android:layout_marginRight="8dp" android:layout_toRightOf="@+id/tvRadius"
+                 android:layout_below="@+id/tvRadius"/>
+    </RelativeLayout>
+</LinearLayout>

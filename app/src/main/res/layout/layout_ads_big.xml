@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@id/myad_native_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/native_ad_height" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.devchie.videomaker.view.nativead.TemplateView
+            android:id="@id/admob_native_container"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/native_ad_height"
+            android:visibility="gone"
+            app:gnt_template_type="@layout/admob_native_medium" />
+    </FrameLayout>
+
+
+    <com.facebook.ads.NativeAdLayout
+        android:id="@id/fb_native_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/native_ad_height"
+        android:orientation="vertical" />
+    <TextView
+        android:id="@id/ad_notification_view"
+        android:layout_width="@dimen/gnt_ad_indicator_width"
+        android:layout_height="@dimen/gnt_ad_indicator_height"
+        android:background="@drawable/gnt_rounded_corners_shape"
+        android:gravity="center"
+        android:text="Ad"
+        android:textColor="@color/white"
+        android:textSize="@dimen/gnt_ad_indicator_text_size"
+        android:textStyle="bold" />
+</merge>

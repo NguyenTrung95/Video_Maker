@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ff000000"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ff111111">
+
+        <include
+            android:id="@id/top_bar"
+            layout="@layout/include_top_bar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recycler"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/top_bar"
+            android:clipToPadding="false"
+            android:paddingLeft="2.0dip"
+            android:paddingTop="2.0dip"
+            android:paddingRight="2.0dip"
+            android:paddingBottom="50.0dip" />
+
+        <RelativeLayout
+            android:id="@id/footer_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ip_color_primary">
+
+            <RelativeLayout
+                android:id="@id/ll_dir"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip">
+
+                <TextView
+                    android:id="@id/tv_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/ip_all_images"
+                    android:textColor="#ffcfcfcf"
+                    android:textSize="16.0sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_dir"
+                    android:layout_marginLeft="4.0dip"
+                    android:layout_marginBottom="2.0dip"
+                    android:layout_toRightOf="@id/tv_dir"
+                    android:src="@mipmap/text_indicator" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@id/btn_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:gravity="center"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:text="Preview (3)"
+                android:textAllCaps="false"
+                android:textColor="#ffffffff"
+                android:textSize="16.0sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_ok"
+            android:layout_width="56.0dip"
+            android:layout_height="56.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="24.0dip"
+            app:backgroundTint="@color/ip_color_accent"
+            app:rippleColor="#ffffffff"
+            app:srcCompat="@drawable/ic_arrow_next"
+            app:tint="@color/ip_color_primary_dark" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/progress"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ProgressBar
+            style="?android:progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/ip_color_primary_dark"
+            android:indeterminateTintMode="src_atop" />
+    </LinearLayout>
+</FrameLayout>

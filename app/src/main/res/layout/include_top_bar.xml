@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="48.0dip"
+    android:background="@android:color/black"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@id/btn_back"
+        android:layout_width="48.0dip"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_back_press"
+        android:padding="12.0dip"
+        app:srcCompat="@drawable/ic_arrow_back_24dp" />
+
+    <View
+        android:layout_width="2.0px"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="12.0dip"
+        android:layout_marginBottom="12.0dip"
+        android:layout_toRightOf="@id/btn_back"
+        android:background="#ff2e2e32" />
+
+    <TextView
+        android:id="@id/tv_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12.0dip"
+        android:layout_toRightOf="@id/btn_back"
+        android:text="Image"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="#ffffffff"
+        android:textSize="18.0sp" />
+
+    <TextView
+        android:id="@id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8.0dip"
+        android:gravity="center"
+        android:minWidth="48.0dip"
+        android:minHeight="30.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:text="0/30"
+        android:textAllCaps="true"
+        android:textColor="#ffffffff"
+        android:textSize="14.0sp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@id/btn_del"
+        android:layout_width="48.0dip"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_back_press"
+        android:padding="12.0dip"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_vector_delete" />
+</RelativeLayout>

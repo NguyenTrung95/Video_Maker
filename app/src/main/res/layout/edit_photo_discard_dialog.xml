@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dist="http://schemas.android.com/apk/distribution"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+              android:orientation="vertical" android:background="@drawable/border_dialog" android:layout_width="280dp"
+              android:layout_height="match_parent">
+    <TextView android:textSize="16dp" android:textColor="#232f34" android:gravity="center_vertical"
+              android:paddingLeft="24dp" android:paddingRight="24dp" android:layout_width="match_parent"
+              android:layout_height="wrap_content" android:layout_marginTop="20dp"
+              android:text="@string/if_you_go_back_you_will_lose_your_photo" android:alpha="60"
+           />
+    <RelativeLayout android:orientation="horizontal" android:paddingRight="8dp" android:layout_width="match_parent"
+                    android:layout_height="52dp" android:layout_marginTop="28dp">
+        <TextView android:textSize="14dp" android:textColor="#5c1349" android:gravity="center" android:id="@+id/tv_keep"
+               android:paddingLeft="16dp"
+                  android:paddingRight="16dp" android:clickable="true" android:layout_width="wrap_content"
+                  android:layout_height="36dp" android:layout_margin="8dp" android:text="@string/keep"
+                  android:layout_alignParentRight="true" android:textAllCaps="true"
+                  android:layout_alignParentEnd="true" />
+        <TextView android:textSize="14dp" android:textColor="#5c1349" android:gravity="center"
+                  android:id="@+id/tv_discard"
+                  android:paddingLeft="16dp" android:paddingRight="16dp" android:clickable="true"
+                  android:layout_width="wrap_content" android:layout_height="36dp" android:layout_margin="8dp"
+                  android:text="@string/discard" android:layout_toLeftOf="@+id/tv_keep" android:textAllCaps="true"
+               />
+    </RelativeLayout>
+</LinearLayout>

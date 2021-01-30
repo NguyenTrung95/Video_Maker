@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:dist="http://schemas.android.com/apk/distribution"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+              android:orientation="vertical"  android:layout_width="match_parent"
+              android:layout_height="@dimen/text_tool_top_height" android:background="@color/test">
+    <RelativeLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="62dp">
+        <com.devchie.photoeditor.view.RoundFrameLayout
+            android:id="@+id/btn_picker_color_highlight"
+                                                          android:padding="3dp" android:clickable="true"
+                                                          android:layout_width="36dp" android:layout_height="36dp"
+                                                          android:layout_margin="5dp"
+                                                          android:layout_centerVertical="true"
+                                                         app:rv_cornerRadius="3dp"
+                                                          app:rv_strokeColor="@color/icChecked"
+                                                          app:rv_strokeWidth="2dp">
+            <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" android:src="@drawable/ic_pencil"/>
+        </com.devchie.photoeditor.view.RoundFrameLayout>
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_color_highlight"
+                                                   android:layout_width="match_parent" android:layout_height="56dp"
+                                                   android:layout_toRightOf="@+id/btn_picker_color_highlight"
+                                                   android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="horizontal" android:layout_width="0dp" android:layout_height="match_parent"
+                      android:layout_weight="1">
+            <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                       android:layout_height="match_parent" android:layout_margin="5dp"
+                       android:src="@drawable/ic_opacity"/>
+            <SeekBar android:layout_gravity="center_vertical" android:id="@+id/sbTranparencyHighlight"
+                     android:layout_width="match_parent" android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_width="0dp" android:layout_height="match_parent"
+                      android:layout_weight="1">
+            <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                       android:layout_height="match_parent" android:layout_margin="5dp" android:src="@drawable/ic_radius"/>
+            <SeekBar android:id="@+id/sbRadius" android:layout_width="match_parent"
+                     android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

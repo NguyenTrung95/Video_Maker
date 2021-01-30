@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:id="@id/rl1"
+            android:layout_width="fill_parent"
+            android:layout_height="56.0dip"
+            android:background="@color/colorBlack">
+
+            <include
+                layout="@layout/toolbar_movie_maker"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="0.0dip"
+                android:layout_marginLeft="0.0dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/ads_container"
+            android:layout_below="@id/rl1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.devchie.videomaker.view.radioview.RatioFrameLayout
+                android:id="@id/videoContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:datumRatio="datumWidth"
+                app:heightRatio="1.0"
+                app:widthRatio="1.0">
+
+                <com.hw.photomovie.render.GLTextureView
+                    android:id="@id/gl_texture"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <RelativeLayout
+                    android:id="@id/control_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="36.0dip"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/media_control_bg">
+
+                    <com.devchie.videomaker.view.PlayPauseView
+                        android:id="@id/btn_play_pause"
+                        android:layout_width="48.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8.0dip"
+                        android:layout_marginRight="8.0dip"
+                        app:anim_direction="negative"
+                        app:anim_duration="200"
+                        app:bg_color="@android:color/transparent"
+                        app:btn_color="@color/white" />
+
+                    <TextView
+                        android:id="@id/tv_control_current_time"
+                        android:layout_width="40.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/btn_play_pause"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="10.0sp" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@id/sb_control"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_toLeftOf="@id/tv_control_total_time"
+                        android:layout_toRightOf="@id/tv_control_current_time"
+                        android:progressBackgroundTint="#88ffffff"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white" />
+
+                    <TextView
+                        android:id="@id/tv_control_total_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:gravity="center"
+                        android:paddingLeft="8.0dip"
+                        android:paddingRight="16.0dip"
+                        android:textColor="@color/white"
+                        android:textSize="10.0sp" />
+                </RelativeLayout>
+            </com.devchie.videomaker.view.radioview.RatioFrameLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@id/ads_container"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:layout_above="@id/rl2">
+
+            <FrameLayout
+                android:id="@id/admob_banner_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@id/admob_banner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/fb_banner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@id/rl2"
+            android:layout_width="fill_parent"
+            android:layout_height="180.0dip"
+            android:layout_alignParentBottom="true">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@id/viewpagerMovie"
+                android:layout_width="fill_parent"
+                android:layout_height="90.0dip" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/viewpagerMovie"
+                android:layout_marginTop="16.0dip">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@id/tablayoutMovie"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    app:tabGravity="fill"
+                    app:tabIconTint="@color/un_selected_white"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorHeight="1.0dip"
+                    app:tabMode="fixed" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include
+        android:id="@id/saving_layout"
+        layout="@layout/layout_saving"
+        android:visibility="gone" />
+</FrameLayout>

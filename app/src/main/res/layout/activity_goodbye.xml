@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/res-auto" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="horizontal" android:id="@id/tv_thankyou_container" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:textSize="40.0dip" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="THANK" android:fontFamily="@font/sf_pro_display_medium" />
+        <TextView android:textSize="40.0dip" android:textColor="@color/rainbow_yellow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" YOU" android:fontFamily="@font/sf_pro_display_regular" />
+    </LinearLayout>
+    <TextView android:textSize="18.0sp" android:textColor="@color/grey_400" android:gravity="center" android:id="@id/tv_thankyou_2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginBottom="48.0dip" android:text="@string/thank_you_2" android:fontFamily="@font/sf_pro_display_regular" />
+</LinearLayout>

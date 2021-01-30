@@ -1,0 +1,2 @@
+include ':advrecyclerview',':app'
+rootProject.name = "VideoMaker"

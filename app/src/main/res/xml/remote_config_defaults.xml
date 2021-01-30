@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>more_app_json</key>
+        <value>{
+            "pkg": "com.picee.photoeditor",
+            "name": "Picee - Photo Editor",
+            "dev": "MediArt",
+            "short_des": "All in one Photo Editor tool",
+            "long_des": "All in one Photo Editor tool",
+            "icon": "https://lh3.googleusercontent.com/cmuaBhKxIORXQEaFyql_6SQZfGMa-UpOCqfXNfDNYp1VfVMBQIE8xjmmGbDA3lJr7F8=s180-rw",
+            "banner": "https://i.imgur.com/fcNR37p.jpg"
+            }</value>
+    </entry>
+</defaultsMap>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/text_tool_top_height"
+    android:background="@color/test">
+
+    <TextView
+        android:id="@+id/tvLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/text_tool_top_height_half"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="Letter spacing"
+        android:textColor="@color/white" />
+
+    <SeekBar
+        android:id="@+id/sbLetterSpacing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_tool_top_height_half"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/tvLetter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/text_tool_top_height_half"
+        android:layout_below="@+id/tvLetter"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="Line height"
+        android:textColor="@color/white" />
+
+    <SeekBar
+        android:id="@+id/sbLineHeight"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_tool_top_height_half"
+        android:layout_below="@+id/tvLetter"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/tvLetter" />
+</RelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Video Maker</string>
+    <string name="app_name_string">Story Maker</string>
+
+
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_inter_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_inter_start_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_native_id">ca-app-pub-3940256099942544/2247696110</string>
+
+
+    <string name="facebook_banner_id">IMG_16_9_APP_INSTALL#506486199950768_506490359950352</string>
+    <string name="facebook_inter_full">IMG_16_9_APP_INSTALL#506486199950768_561934527739268</string>
+    <string name="facebook_inter_start_full">IMG_16_9_APP_INSTALL#506486199950768_561934401072614</string>
+    <string name="facebook_native_banner">IMG_16_9_APP_INSTALL#506486199950768_506812673251454</string>
+    <string name="facebook_native_id">IMG_16_9_APP_INSTALL#506486199950768_563814150884639</string>
+
+    <string name="policy_url">https://sites.google.com/view/storymaker</string>
+    <string name="email_feedback">qqkilldabeat@gmail.com</string>
+
+
+    <color name="unselected_color">#7d7d7d</color>
+    <string name="clear">Clear</string>
+    <string name="if_you_go_back_you_will_lose_your_photo">If you go back, you will lose your photo.</string>
+    <string name="max_item">Too much sticker</string>
+
+
+    <string name="app_not_install">Cannot find this App, please download and try it again</string>
+    <string name="appbar_scrolling_view_behavior">
+        com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior
+    </string>
+    <string name="bottom_sheet_behavior">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+
+    <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
+
+    <string name="chip_text">Chip text</string>
+    <string name="clear_text_end_icon_content_description">Clear text</string>
+
+    <string name="com_facebook_loading">Loading...</string>
+
+
+    <string name="define_roundedimageview"/>
+    <string name="discard">Discard</string>
+    <string name="discard_movie">Discard?</string>
+    <string name="doubletap">Double Tap to Change</string>
+    <string name="drag_drop">Tips: Press and hold items to rearrange</string>
+    <string name="duration_title">Duration each Photo</string>
+    <string name="error_icon_content_description">Error</string>
+    <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
+    <string name="fab_transformation_scrim_behavior">
+        com.google.android.material.transformation.FabTransformationScrimBehavior
+    </string>
+    <string name="fab_transformation_sheet_behavior">
+        com.google.android.material.transformation.FabTransformationSheetBehavior
+    </string>
+
+
+
+    <string name="hide_bottom_view_on_scroll_behavior">
+        com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+    </string>
+    <string name="icon_content_description">Dialog Icon</string>
+    <string name="if_you_go_back_you_will_lose_your_movie">This movie will be canceled</string>
+    <string name="ip_all_images">All pictures</string>
+    <string name="ip_complete">Done</string>
+    <string name="ip_folder_image_count">%1$d total</string>
+    <string name="ip_origin">Original image</string>
+    <string name="ip_origin_size">Original image (%1$s)</string>
+    <string name="ip_photo_crop">Photo crop</string>
+    <string name="ip_preview_image_count">%1$d/%2$d</string>
+    <string name="ip_select_complete">Done (%1$d/%2$d)</string>
+    <string name="ip_select_limit">Select up to %1$d pictures</string>
+    <string name="keep">Keep</string>
+
+    <string name="my_music">My Music</string>
+    <string name="next">Next</string>
+
+    <string name="photo_editor_2">All in one Photo Editor tool</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="rate_app">Rate this app</string>
+    <string name="rating_dialog_experience">We are a team working extremely hard to give you the best apps for free.
+        Your 5-Stars are better than anything in the world!
+    </string>
+    <string name="rating_dialog_feedback_title">Feedback</string>
+    <string name="rating_dialog_maybe_later">Maybe later</string>
+    <string name="rating_dialog_submit">Submit</string>
+    <string name="s1">Save image</string>
+    <string name="s2">Allow Ad to store image in Picture gallery?</string>
+    <string name="s3">Accept</string>
+    <string name="s4">Decline</string>
+    <string name="s5">Create calendar event</string>
+    <string name="s6">Allow Ad to create a calendar event?</string>
+    <string name="s7">Test Ad</string>
+    <string name="search_menu_title">Search</string>
+    <string name="select_photos">Select Photos</string>
+    <string name="share_this">Share to Friends</string>
+    <string name="splash_2">Create your own story</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="str_done">Done</string>
+    <string name="str_duration">Duration</string>
+    <string name="str_filter">Filter</string>
+    <string name="str_gradient">Gradient</string>
+    <string name="str_leftright">LeftRight</string>
+    <string name="str_music">Music</string>
+    <string name="str_new_video">Create Video</string>
+    <string name="str_random">Random</string>
+    <string name="str_ratio">Ratio</string>
+    <string name="str_saving_video">Saving video</string>
+    <string name="str_scale">Scale</string>
+    <string name="str_thaw">Thaw</string>
+    <string name="str_tranlation">Translation</string>
+    <string name="str_transfer">Transition</string>
+    <string name="str_updown">UpDown</string>
+    <string name="str_window">Window</string>
+    <string name="thank_you_2">Have a nice day</string>
+    <string name="title_photoeditor">Photo Editor</string>
+    <string name="try_again">Try again!</string>
+    <string name="view">Install</string>
+    <string name="more_than_3_photos">Need more than 3 photos</string>
+    <string name="maxtext">Too much text</string>
+
+</resources>

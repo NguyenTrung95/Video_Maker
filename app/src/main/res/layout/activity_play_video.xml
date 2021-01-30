@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@color/colorBlack" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/videoView_container" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <VideoView android:layout_gravity="center" android:id="@id/videoView" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </FrameLayout>
+    <RelativeLayout android:id="@id/toolBarShare" android:background="#33000000" android:layout_width="fill_parent" android:layout_height="56.0dip">
+        <ImageView android:id="@id/btnBackFinal" android:padding="16.0dip" android:clickable="true" android:layout_width="56.0dip" android:layout_height="fill_parent" android:src="@drawable/ic_arrow_back_24dp" />
+        <com.airbnb.lottie.LottieAnimationView android:id="@id/btnRate" android:background="?actionBarItemBackground" android:clickable="true" android:layout_width="56.0dip" android:layout_height="fill_parent" android:layout_alignParentRight="true" android:paddingStart="12.0dip" android:paddingEnd="12.0dip" app:lottie_autoPlay="true" app:lottie_loop="true" app:lottie_rawRes="@raw/ic_rate" />
+    </RelativeLayout>
+</FrameLayout>

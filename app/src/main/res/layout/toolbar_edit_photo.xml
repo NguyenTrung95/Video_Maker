@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:dist="http://schemas.android.com/apk/distribution"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:background="@color/black" android:layout_width="match_parent" android:layout_height="48dp">
+        <ImageView android:id="@+id/btnBackPhoto" android:padding="12dp" android:clickable="true"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_arrow_back" style="0x7f110000"/>
+        <ImageView android:id="@+id/btnAddText_toolbar" android:visibility="gone" android:clickable="true"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_plus" android:layout_alignParentTop="true"
+                   android:layout_centerHorizontal="true" style="0x7f110000"/>
+        <ImageView android:id="@+id/btnUndo" android:padding="12dp" android:clickable="true"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_undo" android:layout_toLeftOf="@+id/btnRedo" style="0x7f110000"/>
+        <ImageView android:id="@+id/btnRedo" android:padding="12dp" android:clickable="true"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_redo" android:layout_toLeftOf="@+id/btnFinishPhoto" style="0x7f110000"/>
+        <ImageView android:id="@+id/btnFinishPhoto" android:padding="12dp" android:clickable="true"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/ic_finish" android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true" style="0x7f110000"/>
+    </RelativeLayout>
+</RelativeLayout>

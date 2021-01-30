@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#dd111111"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@id/pb_loading"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="80.0dip"
+        android:layout_height="80.0dip"
+        android:layout_marginBottom="8.0dip" />
+
+    <TextView
+        android:id="@id/tv_saving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28.0dip"
+        android:text="@string/str_saving_video"
+        android:textColor="@color/white"
+        android:textSize="14.0sp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/native_ad_height"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8.0dip"
+        app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
+        app:cardCornerRadius="8.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/com_facebook_loading"
+            android:textColor="@color/grey_400"
+            android:textSize="16.0sp" />
+
+        <include layout="@layout/layout_ads_big" />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

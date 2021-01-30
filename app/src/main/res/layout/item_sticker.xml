@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:dist="http://schemas.android.com/apk/distribution"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   xmlns:aapt="http://schemas.android.com/aapt" android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content" app:cardBackgroundColor="#282828"
+                                   app:cardCornerRadius="4dp" app:cardUseCompatPadding="true">
+    <com.devchie.videomaker.view.SquareImageView
+        android:id="@+id/imgSticker" android:padding="8dp"
+                                                               android:layout_width="95dp"
+                                                               android:layout_height="95dp"/>
+</androidx.cardview.widget.CardView>

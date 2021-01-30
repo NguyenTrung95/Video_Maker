@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:dist="http://schemas.android.com/apk/distribution"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:aapt="http://schemas.android.com/aapt"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="@dimen/text_tool_top_height" >
+    <LinearLayout android:orientation="vertical"  android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:background="@color/test">
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+                      android:layout_height="@dimen/text_tool_top_height_half" android:layout_marginLeft="4dp"
+                      android:layout_marginRight="4dp">
+            <ImageView android:id="@+id/btn_align_left" android:clickable="true" android:layout_width="0dp"
+                       android:layout_height="match_parent" android:src="@drawable/ic_align_left"
+                       android:layout_weight="1" />
+            <ImageView android:id="@+id/btn_align_center" android:clickable="true" android:layout_width="0dp"
+                       android:layout_height="match_parent" android:src="@drawable/ic_align_center"
+                       android:layout_weight="1" style="0x7f110000"/>
+            <ImageView android:id="@+id/btn_align_right" android:padding="4dp" android:clickable="true"
+                       android:layout_width="0dp" android:layout_height="match_parent"
+                       android:src="@drawable/ic_align_right" android:layout_weight="1"/>
+            <LinearLayout android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="1">
+                <com.devchie.photoeditor.view.ToggleImageButton
+                    android:id="@+id/btn_bold"
+                                                                   android:layout_width="30dp"
+                                                                   android:layout_height="30dp"
+                                                                   app:tib_drawable_off="@drawable/ic_bold"
+                                                                   app:tib_drawable_on="@drawable/ic_bold_checked"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="1">
+                <com.devchie.photoeditor.view.ToggleImageButton
+                    android:id="@+id/btn_italic"
+                                                                   android:layout_width="30dp"
+                                                                   android:layout_height="30dp"
+                                                                   app:tib_drawable_off="@drawable/ic_itatic"
+                                                                   app:tib_drawable_on="@drawable/ic_italic_checked"/>
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:layout_width="0dp" android:layout_height="match_parent"
+                          android:layout_weight="1">
+                <com.devchie.photoeditor.view.ToggleImageButton
+                    android:id="@+id/btn_all_caps"
+                                                                   android:layout_width="30dp"
+                                                                   android:layout_height="30dp"
+                                                                   app:tib_drawable_off="@drawable/ic_all_caps"
+                                                                   app:tib_drawable_on="@drawable/ic_all_caps_checked"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:orientation="horizontal" android:layout_width="0dp"
+                          android:layout_height="match_parent" android:layout_weight="1">
+                <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                           android:layout_height="match_parent" android:layout_margin="5dp"
+                           android:src="@drawable/ic_text_size"/>
+                <SeekBar android:layout_gravity="center_vertical" android:id="@+id/seebar_text_size"
+                         android:layout_width="match_parent" android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="0dp"
+                          android:layout_height="match_parent" android:layout_weight="1">
+                <ImageView android:layout_gravity="center" android:layout_width="wrap_content"
+                           android:layout_height="match_parent" android:layout_margin="5dp" android:src="@drawable/ic_padding"/>
+                <SeekBar android:id="@+id/sbPadding" android:layout_width="match_parent"
+                         android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:dist="http://schemas.android.com/apk/distribution"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
+             android:layout_width="wrap_content" android:layout_height="match_parent">
+    <com.devchie.photoeditor.view.RoundFrameLayout
+        android:layout_gravity="center" android:id="@+id/color_section"
+                                                      android:layout_width="38dp" android:layout_height="38dp"
+                                                      android:layout_margin="6dp" app:rv_cornerRadius="4dp"
+                                                      app:rv_strokeWidth="2dp"/>
+</FrameLayout>
