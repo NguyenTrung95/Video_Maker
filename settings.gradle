@@ -1,2 +1,4 @@
-include ':advrecyclerview',':app'
+include ':matisse'
+include ':tedimagepicker'
+include ':app'
 rootProject.name = "VideoMaker"

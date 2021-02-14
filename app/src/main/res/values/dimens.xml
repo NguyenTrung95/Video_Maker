@@ -350,4 +350,9 @@
     <dimen name="text_tool_top_height">124dp</dimen>
     <dimen name="text_tool_top_height_half">62dp</dimen>
     <dimen name="frame_margin">18dp</dimen>
+
+    <dimen name="media_grid_size">48dp</dimen>
+    <dimen name="media_grid_spacing">4dp</dimen>
+
+    <dimen name="album_item_height">72dp</dimen>
 </resources>

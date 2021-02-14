@@ -1,8 +1,5 @@
 /*
- * This file is derived from /v7/recyclerview/tests/src/android/support/v7/widget/TestActivity.java
- */
-/*
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright 2017 Zhihu Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.matisse.internal.entity;
 
-package com.h6ah4i.android.widget.advrecyclerview;
+public class CaptureStrategy {
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.FrameLayout;
+    public final boolean isPublic;
+    public final String authority;
+    public final String directory;
 
-public class TestActivity extends Activity {
+    public CaptureStrategy(boolean isPublic, String authority) {
+        this(isPublic, authority, null);
+    }
 
-    FrameLayout mContainer;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mContainer = new FrameLayout(this);
-        setContentView(mContainer);
+    public CaptureStrategy(boolean isPublic, String authority, String directory) {
+        this.isPublic = isPublic;
+        this.authority = authority;
+        this.directory = directory;
     }
 }

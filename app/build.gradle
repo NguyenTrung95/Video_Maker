@@ -17,6 +17,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,6 +31,10 @@ android {
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -51,9 +60,7 @@ dependencies {
     implementation "androidx.work:work-runtime:2.3.4"
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
-    implementation project(':advrecyclerview')
-
-    //implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
+    implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.karumi:dexter:6.2.1'
@@ -64,7 +71,7 @@ dependencies {
     implementation 'com.commit451:PhotoView:1.2.4'
 
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
-    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
+//    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
     implementation 'com.facebook.android:audience-network-sdk:5.+'
@@ -74,9 +81,21 @@ dependencies {
     //multiscreen
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
 
+    implementation 'gun0912.ted:tedpermission:2.2.2'
 
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation 'it.sephiroth.android.library.imagezoom:library:1.0.4'
+
+    compileOnly 'com.github.bumptech.glide:glide:4.9.0'
+    compileOnly 'com.squareup.picasso:picasso:2.5.2'
+    implementation "androidx.core:core-ktx:+"
+    implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
 }
 repositories {
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     mavenCentral()
 }
+
+

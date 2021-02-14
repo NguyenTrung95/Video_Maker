@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_190sdp"
         android:background="@drawable/bg_main"
-        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
         android:padding="@dimen/_16sdp"
         android:orientation="vertical">
         <LinearLayout
