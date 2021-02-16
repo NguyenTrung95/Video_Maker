@@ -43,6 +43,7 @@
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_margin="@dimen/_4sdp"
             android:layout_above="@+id/rl_container"
             android:layout_below="@+id/ads_container">
 
@@ -125,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/test22"
+                    android:background="@color/bg_tab_menu"
                     app:tabGravity="fill"
                     app:tabIndicatorColor="@android:color/transparent"
                     app:tabIndicatorHeight="0dp"

@@ -37,14 +37,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.builder.ColorPickerClickListener;
-import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import com.google.android.material.tabs.TabLayout;
-import com.devchie.videomaker.R;
-import com.devchie.videomaker.activities.BaseSplitActivity;
-import com.devchie.videomaker.helper.ColorFilterGenerator;
-import com.devchie.videomaker.view.RoundViewDelegate;
 import com.devchie.photoeditor.adapter.ColorAdapter;
 import com.devchie.photoeditor.adapter.ViewPagerAdapter;
 import com.devchie.photoeditor.dialog.DiscardDialog;
@@ -66,7 +58,6 @@ import com.devchie.photoeditor.fragment.TuneImage.TuneFragment;
 import com.devchie.photoeditor.fragment.texttools.FontFragment;
 import com.devchie.photoeditor.fragment.texttools.FormatTextFragment;
 import com.devchie.photoeditor.fragment.texttools.HightLightTextFragment;
-
 import com.devchie.photoeditor.fragment.texttools.SpacingTextFragment;
 import com.devchie.photoeditor.fragment.texttools.StrokeTextFragment;
 import com.devchie.photoeditor.interfaces.ColorFragmentListener;
@@ -87,6 +78,14 @@ import com.devchie.photoeditor.utils.BitmapProcess;
 import com.devchie.photoeditor.utils.ViewAnimation;
 import com.devchie.photoeditor.view.RoundFrameLayout;
 import com.devchie.photoeditor.view.StrokeTextView;
+import com.devchie.videomaker.R;
+import com.devchie.videomaker.activities.BaseSplitActivity;
+import com.devchie.videomaker.helper.ColorFilterGenerator;
+import com.devchie.videomaker.view.RoundViewDelegate;
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -197,6 +196,9 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
 
 
     public void onCreate(Bundle bundle) {
+        //activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+
         long currentThreadTimeMillis = SystemClock.currentThreadTimeMillis();
         EditPhotoActivity.super.onCreate(bundle);
         getWindow().setFlags(1024, 1024);
@@ -352,6 +354,54 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     @SuppressLint("WrongConstant")
 
     private void setupTabIconsImageTool() {
+        String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
+      /*  for(int i = 0; i < tabs.length; i++){
+            switch (i){
+                case 0:
+                    TextView textView1 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+                    textView1.setText(tabs[i]);
+                    textView1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_text, 0, 0);
+                    this.addTextTabIndex = i;
+                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView1);
+                    break;
+
+                case 1:
+                    TextView textView2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+                    textView2.setText(tabs[i]);
+                    textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_overplay, 0, 0);
+                    this.addTextTabIndex = i;
+                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView2);
+                    break;
+
+
+                case 2:
+                    TextView textView3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+                    textView3.setText(tabs[i]);
+                    textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_emoji, 0, 0);
+                    this.addTextTabIndex = i;
+                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView3);
+                    break;
+
+
+                case 3:
+                    TextView textView4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+                    textView4.setText(tabs[i]);
+                    textView4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_sticker, 0, 0);
+                    this.addTextTabIndex = i;
+                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView4);
+                    break;
+
+                case 4:
+                    TextView textView5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+                    textView5.setText(tabs[i]);
+                    textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tune, 0, 0);
+                    this.addTextTabIndex = i;
+                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView5);
+                    break;
+
+            }
+        }*/
+
         TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
         textView.setText("Sticker");
         textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_sticker, 0, 0);
@@ -377,6 +427,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         textView5.setText("Tune");
         textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tune, 0, 0);
         this.tablayoutImageTools.getTabAt(i + 1).setCustomView(textView5);
+
         if ((getResources().getConfiguration().screenLayout & 15) == 4) {
             this.tablayoutImageTools.setTabMode(1);
         }

@@ -14,7 +14,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="?attr/page.bg">
@@ -26,39 +26,6 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/media_grid_spacing"
-        android:layout_above="@+id/listPhoto"
         android:paddingTop="@dimen/media_grid_spacing"/>
 
-    <RelativeLayout
-        android:id="@+id/listPhoto"
-        android:layout_width="fill_parent"
-        android:layout_height="80.0dip"
-        android:layout_alignParentBottom="true">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerPhoto"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8sp"
-            android:layout_marginBottom="8sp"
-            android:layout_toStartOf="@+id/movie_add_float"
-            android:layout_toLeftOf="@+id/movie_add_float">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <ImageView
-            android:id="@+id/movie_add_float"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@color/blue"
-            android:padding="14.0dip"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_arrow_right"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
-
-
-</RelativeLayout>
+</FrameLayout>
