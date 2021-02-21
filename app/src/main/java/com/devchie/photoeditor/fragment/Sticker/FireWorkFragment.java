@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.devchie.videomaker.R;
 import com.devchie.videomaker.listener.StickerListener;
 import com.devchie.videomaker.model.Sample;
@@ -26,7 +28,7 @@ public class FireWorkFragment extends Fragment implements StickerAdapter.Sticker
         View inflate = layoutInflater.inflate(R.layout.fragment_sticker_recyclerview, viewGroup, false);
         RecyclerView findViewById = inflate.findViewById(R.id.recyclerSticker);
         this.recyclerView = findViewById;
-        findViewById.setLayoutManager(new LinearLayoutManager(getActivity(), 0, false));
+        findViewById.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         this.fireWorkList = FireWorks();
         this.recyclerView.setAdapter(new StickerAdapter(this.fireWorkList, getActivity(), this));
         return inflate;

@@ -1,6 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:drawable="@drawable/ic_movie_filter_on" />
-    <item android:drawable="@drawable/ic_movie_filter_off" />
-</selector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:strokeWidth="1"
+      android:pathData="M12,14.1429C15.077,14.1429 17.5714,11.6484 17.5714,8.5714C17.5714,5.4944 15.077,3 12,3C8.9229,3 6.4285,5.4944 6.4285,8.5714C6.4285,11.6484 8.9229,14.1429 12,14.1429Z"
+      android:fillColor="#00000000"
+      android:fillType="evenOdd"
+      android:strokeColor="#2051FF"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M8.1428,21C11.2199,21 13.7143,18.5056 13.7143,15.4286C13.7143,12.3516 11.2199,9.8572 8.1428,9.8572C5.0658,9.8572 2.5714,12.3516 2.5714,15.4286C2.5714,18.5056 5.0658,21 8.1428,21Z"
+      android:fillColor="#00000000"
+      android:fillType="evenOdd"
+      android:strokeColor="#2051FF"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M15.8571,21C18.9341,21 21.4286,18.5056 21.4286,15.4286C21.4286,12.3516 18.9341,9.8572 15.8571,9.8572C12.7801,9.8572 10.2857,12.3516 10.2857,15.4286C10.2857,18.5056 12.7801,21 15.8571,21Z"
+      android:fillColor="#00000000"
+      android:fillType="evenOdd"
+      android:strokeColor="#2051FF"/>
+</vector>

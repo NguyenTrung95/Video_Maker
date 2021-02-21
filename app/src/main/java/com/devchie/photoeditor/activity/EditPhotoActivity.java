@@ -2,7 +2,6 @@ package com.devchie.photoeditor.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -21,7 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -53,7 +51,6 @@ import com.devchie.photoeditor.fragment.Overplay.SummerFragment;
 import com.devchie.photoeditor.fragment.Overplay.TravelFragment;
 import com.devchie.photoeditor.fragment.Overplay.WinterFragment;
 import com.devchie.photoeditor.fragment.Sticker.StickerFragment;
-import com.devchie.photoeditor.fragment.TextEditorDialog;
 import com.devchie.photoeditor.fragment.TuneImage.TuneFragment;
 import com.devchie.photoeditor.fragment.texttools.FontFragment;
 import com.devchie.photoeditor.fragment.texttools.FormatTextFragment;
@@ -87,13 +84,20 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class EditPhotoActivity extends BaseSplitActivity implements View.OnClickListener, OnPhotoEditorListener, FormatTextFragmentListener, FontFragmentListener, HightLightFragmentListener, ColorFragmentListener, SpacingFragmentListener, StrokeFragmentListener, ShadowFragmentListener, EmojiFragment.EmojiListener, StickerFragment.StickerFragmentListener, OverlayListener, OverlaysFragmentListener, TuneFragment.TuneFragmentListener, TextEditorDialog.TextFragmentListener {
+public class EditPhotoActivity extends BaseSplitActivity implements View.OnClickListener, OnPhotoEditorListener,
+        FormatTextFragmentListener, FontFragmentListener,
+        HightLightFragmentListener, ColorFragmentListener, SpacingFragmentListener,
+        StrokeFragmentListener, ShadowFragmentListener, EmojiFragment.EmojiListener,
+        StickerFragment.StickerFragmentListener, OverlayListener, OverlaysFragmentListener,
+        TuneFragment.TuneFragmentListener {//TextEditorDialog.TextFragmentListener,
     public static Typeface defaultTypeface;
 
     public int addTextTabIndex = 0;
@@ -355,13 +359,14 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
 
     private void setupTabIconsImageTool() {
         String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
-      /*  for(int i = 0; i < tabs.length; i++){
+        this.addTextTabIndex = 0;
+
+        for(int i = 0; i < tabs.length; i++){
             switch (i){
                 case 0:
                     TextView textView1 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
                     textView1.setText(tabs[i]);
                     textView1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_text, 0, 0);
-                    this.addTextTabIndex = i;
                     this.tablayoutImageTools.getTabAt(i).setCustomView(textView1);
                     break;
 
@@ -369,7 +374,6 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
                     TextView textView2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
                     textView2.setText(tabs[i]);
                     textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_overplay, 0, 0);
-                    this.addTextTabIndex = i;
                     this.tablayoutImageTools.getTabAt(i).setCustomView(textView2);
                     break;
 
@@ -378,7 +382,6 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
                     TextView textView3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
                     textView3.setText(tabs[i]);
                     textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_emoji, 0, 0);
-                    this.addTextTabIndex = i;
                     this.tablayoutImageTools.getTabAt(i).setCustomView(textView3);
                     break;
 
@@ -387,7 +390,6 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
                     TextView textView4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
                     textView4.setText(tabs[i]);
                     textView4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_sticker, 0, 0);
-                    this.addTextTabIndex = i;
                     this.tablayoutImageTools.getTabAt(i).setCustomView(textView4);
                     break;
 
@@ -395,38 +397,13 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
                     TextView textView5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
                     textView5.setText(tabs[i]);
                     textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tune, 0, 0);
-                    this.addTextTabIndex = i;
                     this.tablayoutImageTools.getTabAt(i).setCustomView(textView5);
                     break;
 
             }
-        }*/
-
-        TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView.setText("Sticker");
-        textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_sticker, 0, 0);
-        this.tablayoutImageTools.getTabAt(0).setCustomView(textView);
-        TextView textView2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView2.setText("Overlays");
-        textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_overplay, 0, 0);
-        this.tablayoutImageTools.getTabAt(1).setCustomView(textView2);
-        int i = 2;
-        if (Build.VERSION.SDK_INT >= 21) {
-            TextView textView3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-            textView3.setText("Emoji");
-            textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_emoji, 0, 0);
-            this.tablayoutImageTools.getTabAt(2).setCustomView(textView3);
-            i = 3;
         }
-        TextView textView4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView4.setText("Text");
-        textView4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_text, 0, 0);
-        this.addTextTabIndex = i;
-        this.tablayoutImageTools.getTabAt(i).setCustomView(textView4);
-        TextView textView5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView5.setText("Tune");
-        textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tune, 0, 0);
-        this.tablayoutImageTools.getTabAt(i + 1).setCustomView(textView5);
+
+
 
         if ((getResources().getConfiguration().screenLayout & 15) == 4) {
             this.tablayoutImageTools.setTabMode(1);
@@ -466,7 +443,29 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
 
     private void setupViewPagerImageTools(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFrag(new Fragment(), "Text");
+     /*   AddTextFragment addTextFragment = new AddTextFragment();
+        viewPagerAdapter.addFrag(addTextFragment, "Sticker");
+        addTextFragment.setAddTextListener(this);*/
+
+        OverlaysFragment overlaysFragment = new OverlaysFragment();
+        viewPagerAdapter.addFrag(overlaysFragment, "Overlays");
+        overlaysFragment.setListener(this);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            EmojiFragment emojiFragment = new EmojiFragment();
+            viewPagerAdapter.addFrag(emojiFragment, "Emoji");
+            emojiFragment.setEmojiListener(this);
+        }
+
         StickerFragment stickerFragment = new StickerFragment();
+        viewPagerAdapter.addFrag(stickerFragment, "Sticker");
+        stickerFragment.setStickerFragmentListener(this);
+
+        TuneFragment tuneFragment = new TuneFragment();
+        viewPagerAdapter.addFrag(tuneFragment, "Tunes");
+        tuneFragment.setTuneFragmentListener(this);
+       /* StickerFragment stickerFragment = new StickerFragment();
         viewPagerAdapter.addFrag(stickerFragment, "Sticker");
         stickerFragment.setStickerFragmentListener(this);
         OverlaysFragment overlaysFragment = new OverlaysFragment();
@@ -480,7 +479,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         viewPagerAdapter.addFrag(new Fragment(), "Text");
         TuneFragment tuneFragment = new TuneFragment();
         viewPagerAdapter.addFrag(tuneFragment, "Tunes");
-        tuneFragment.setTuneFragmentListener(this);
+        tuneFragment.setTuneFragmentListener(this);*/
         viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -496,6 +495,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
             Glide.with(this).load(this.listPhoto.get(this.position)).into(this.imgPhotoEditor.getSource());
         }
     }
+
 
     class DeCodeImageTask extends AsyncTask<Void, Void, Void> {
 
@@ -666,10 +666,11 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     }
 
     public void onEditTextChangeListener(View view, String str, int i) {
-        showTextEditorFragment(str);
+        //showTextEditorFragment(str);
+        Log.d("","");
     }
 
-    private void showTextEditorFragment(String str) {
+  /*  private void showTextEditorFragment(String str) {
         TextEditorDialog textEditorDialog = new TextEditorDialog(this, str);
         textEditorDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             public void onDismiss(DialogInterface dialogInterface) {
@@ -684,7 +685,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         });
         textEditorDialog.setTextListener(this);
         textEditorDialog.show();
-    }
+    }*/
 
     public void onClickGetEditTextChangeListener(StrokeTextView strokeTextView, RoundFrameLayout roundFrameLayout) {
         this.textViewMain = strokeTextView;
@@ -915,7 +916,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         }
     }
 
-    public void onOverplayClick(Bitmap bitmap) {
+    public void onOverplayClick(@NotNull Bitmap bitmap) {
         int i;
         int i2;
         int width = bitmap.getWidth();
@@ -1045,4 +1046,5 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
             this.countOverplay = 0;
         }
     }
+
 }

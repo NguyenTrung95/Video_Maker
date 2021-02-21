@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.devchie.videomaker.R;
 import com.devchie.videomaker.listener.StickerListener;
 import com.devchie.videomaker.model.Sample;
-import com.devchie.videomaker.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class LoveFragment extends Fragment implements StickerAdapter.StickerAdap
         View inflate = layoutInflater.inflate(R.layout.fragment_sticker_recyclerview, viewGroup, false);
         RecyclerView findViewById = inflate.findViewById(R.id.recyclerSticker);
         this.recyclerView = findViewById;
-        findViewById.setLayoutManager(new LinearLayoutManager(getActivity(), 0, false));
+        findViewById.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         this.heartsList = HeartList();
         this.recyclerView.setAdapter(new StickerAdapter(this.heartsList, getActivity(), this));
         return inflate;
