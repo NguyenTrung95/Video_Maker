@@ -2,16 +2,19 @@ package com.devchie.photoeditor.fragment.Sticker;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.tabs.TabLayout;
+
 import com.devchie.videomaker.R;
+import com.google.android.material.tabs.TabLayout;
 
 public class StickerFragment extends Fragment {
     StickerFragmentListener listener;
@@ -31,6 +34,10 @@ public class StickerFragment extends Fragment {
         this.tabLayoutSticker = inflate.findViewById(R.id.tablayoutSticker);
         ViewPager findViewById = inflate.findViewById(R.id.viewpagerSticker);
         this.viewPagerSticker = findViewById;
+        tabLayoutSticker.setSelectedTabIndicatorColor(Color.parseColor("#2051FF"));
+        tabLayoutSticker.setSelectedTabIndicatorHeight((int) (1 * getResources().getDisplayMetrics().density));
+        tabLayoutSticker.setTabTextColors(Color.parseColor("#ff666666"), Color.parseColor("#2051FF"));
+
         findViewById.setAdapter(new StickerViewPagerAdapter(getChildFragmentManager(), getActivity(), new StickerViewPagerAdapter.StickerViewPagerAdapterListener() {
             public void onSticker(int i) {
                 if (StickerFragment.this.listener != null) {

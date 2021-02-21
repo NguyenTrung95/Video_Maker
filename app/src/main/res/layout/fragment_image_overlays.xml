@@ -1,162 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:dist="http://schemas.android.com/apk/distribution"
-                      xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent" android:layout_height="130dp" >
-    <LinearLayout android:orientation="horizontal" android:background="@color/test11"
-                  android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_phrases"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="130dp">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:paddingTop="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ic_phrases"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
                 <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_phrase"
-                                                                          />
+                    android:src="@drawable/ic_phrase"
+                    android:tint="#333333" />
             </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Phrases"
-                      android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phrases"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
         </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_food"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/ic_food"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
                 <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_food"
-                                                                        />
+                    android:src="@drawable/ic_food"
+                    android:tint="#333333" />
             </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Food"
-                      android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
         </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_love" android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/ic_love"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
                 <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_love"/>
+                    android:src="@drawable/ic_love"
+                    android:tint="#333333" />
             </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Love"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_christmas" android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_christmas"
-                                                                        />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Christmas"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_sayings"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_sayings"
-                                                                        />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Sayings"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_summer"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_summer"
-                                                                        />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Summer"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_winter"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_winter"
-                                                                         />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Winter"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_travel"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_travel"
-                                                                          />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Travel"
-                      android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical"
-                      android:id="@+id/ic_motivation"  android:clickable="true"
-                      android:layout_width="80dp" android:layout_height="match_parent">
-            <androidx.cardview.widget.CardView android:layout_width="80dp" android:layout_height="80dp"
-                                               app:cardBackgroundColor="#282828" app:cardCornerRadius="4dp"
-                                               app:cardUseCompatPadding="true">
-                <com.devchie.videomaker.view.SquareImageView
-                    android:layout_gravity="center"
-                                                                           android:layout_width="wrap_content"
-                                                                           android:layout_height="wrap_content"
-                                                                           android:src="@drawable/ic_motivation"
-                                                                         />
-            </androidx.cardview.widget.CardView>
-            <TextView android:textSize="12sp" android:textColor="@android:color/white"
-                      android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Motivation"
-                      android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Love"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
-</HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:padding="@dimen/_8sdp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ic_christmas"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="86dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_christmas"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Christmas"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ic_sayings"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_sayings"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sayings"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ic_summer"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_summer"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Summer"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:paddingBottom="@dimen/_16sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ic_winter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_winter"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Winter"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ic_travel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_travel"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Travel"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ic_motivation"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#e9eeff"
+                app:cardCornerRadius="4dp"
+                app:cardUseCompatPadding="true">
+
+                <com.devchie.videomaker.view.SquareImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_motivation"
+                    android:tint="#333333" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Motivation"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -4,33 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/bg_main"
     android:orientation="vertical">
 
 
     <ImageView
         android:layout_above="@+id/ll_menu"
-        android:src="@drawable/ic_name"
+        android:src="@drawable/ic_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_40sdp"
+        android:layout_margin="@dimen/_40sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:id="@+id/ll_menu"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_margin="@dimen/_16sdp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_190sdp"
-        android:background="@drawable/bg_main"
-        android:layout_marginBottom="@dimen/_50sdp"
+        android:id="@+id/ll_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:background="@drawable/bg_footer"
         android:padding="@dimen/_16sdp"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
         <LinearLayout
             android:id="@id/listPhoto"
@@ -40,32 +33,75 @@
 
             <RelativeLayout
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:src="@drawable/ic_share"
-                    android:id="@id/bt_share"
+                <LinearLayout
+                    android:id="@+id/ll_share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   />
+                    android:orientation="vertical">
+                    <ImageView
+                        android:src="@drawable/ic_share"
+                        android:id="@id/bt_share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
 
-                <ImageView
-                    android:src="@drawable/ic_rate"
-                    android:id="@id/bt_rate"
-                    android:layout_toEndOf="@id/bt_share"
-                    android:layout_toStartOf="@id/bt_policy"
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:text="Share"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_rate"
+                    android:layout_toEndOf="@+id/ll_share"
+                    android:layout_toStartOf="@+id/ll_sercurity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:orientation="vertical">
+                    <ImageView
+                        android:src="@drawable/ic_rate"
+                        android:id="@id/bt_rate"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
 
-                <ImageView
-                    android:src="@drawable/ic_security"
-                    android:id="@id/bt_policy"
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:text="Rate"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_sercurity"
+                    android:layout_width="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"                    />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:src="@drawable/ic_security"
+                        android:id="@id/bt_policy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:padding="@dimen/_5sdp"
+                        android:text="Sercurity"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
 
             </RelativeLayout>
 
@@ -73,45 +109,43 @@
                 android:id="@id/bt_new_project"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:foreground="?android:selectableItemBackground"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_35sdp"
+                android:layout_marginRight="@dimen/_35sdp"
                 app:cardBackgroundColor="@color/selected_border"
-                app:cardCornerRadius="@dimen/_12sdp">
+                app:cardCornerRadius="@dimen/_22sdp">
 
                 <LinearLayout
+                    android:background="@color/selected_border"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="@dimen/_5sdp">
+                    android:padding="@dimen/_4sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="36.0dip"
+                        android:layout_height="@dimen/_36sdp"
                         android:fontFamily="@font/sf_pro_display_medium"
                         android:gravity="center_vertical"
                         android:text="@string/str_new_video"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_15sdp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <FrameLayout
+                android:id="@+id/admob_banner"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8.0dip"
+                android:layout_height="72.0dip"
+                android:layout_marginLeft="8.0dip"
+                android:layout_marginRight="8.0dip"
+                android:layout_marginBottom="8.0dip" />
             <include layout="@layout/layout_ads_big" />
+
         </LinearLayout>
 
 
-        <FrameLayout
-            android:id="@+id/admob_banner"
-            android:layout_width="match_parent"
-            android:layout_marginTop="8.0dip"
-            android:layout_height="72.0dip"
-            android:layout_marginLeft="8.0dip"
-            android:layout_marginRight="8.0dip"
-            android:layout_marginBottom="8.0dip" />
-
     </LinearLayout>
 
-    </LinearLayout>
 </RelativeLayout>

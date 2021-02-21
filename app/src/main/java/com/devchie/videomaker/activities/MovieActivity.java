@@ -191,7 +191,7 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
         this.tabLayoutMovie = tabLayout;
         tabLayout.setupWithViewPager(this.viewPagerMovie);
         setupTabIconMovie();
-        this.tabLayoutMovie.setTabTextColors(getResources().getColor(R.color.un_selected_white), getResources().getColor(R.color.white));
+        this.tabLayoutMovie.setTabTextColors(getResources().getColor(R.color.un_selected_white), getResources().getColor(R.color.rainbow_yellow));
         this.btnPlayPause.setPlaying(true);
         this.controlContainer = (ViewGroup) findViewById(R.id.control_container);
         this.sbControl = (SeekBar) findViewById(R.id.sb_control);

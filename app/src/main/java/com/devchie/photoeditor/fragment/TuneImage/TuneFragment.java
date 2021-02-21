@@ -4,16 +4,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.tabs.TabLayout;
-import com.devchie.videomaker.listener.TuneImageFragmentListener;
+
 import com.devchie.videomaker.R;
+import com.devchie.videomaker.listener.TuneImageFragmentListener;
+import com.google.android.material.tabs.TabLayout;
 
 public class TuneFragment extends Fragment {
     TuneFragmentListener listener;
     TabLayout tabLayoutTune;
     ViewPager viewPagerTune;
+    SeekBar sbBrightness;
+    SeekBar sbContrast;
+    SeekBar sbHue;
+    SeekBar sbSaturation;
+
+    TextView tvBrightness;
+    TextView tvContrast;
+    TextView tvHue;
+    TextView tvSaturation;
 
     public interface TuneFragmentListener {
         void onBrightnessChosse(int i);
@@ -33,6 +46,17 @@ public class TuneFragment extends Fragment {
         View inflate = layoutInflater.inflate(R.layout.fragment_image_tune, viewGroup, false);
         this.tabLayoutTune = inflate.findViewById(R.id.tablayoutTune);
         ViewPager findViewById = inflate.findViewById(R.id.viewpagerTune);
+        this.sbBrightness = inflate.findViewById(R.id.sb_brightness);
+        this.sbContrast = inflate.findViewById(R.id.sb_contrast);
+        this.sbHue = inflate.findViewById(R.id.sb_hue);
+        this.sbSaturation = inflate.findViewById(R.id.sb_saturation);
+
+        this.tvBrightness = inflate.findViewById(R.id.tv_brightness);
+        this.tvContrast = inflate.findViewById(R.id.tv_contrast);
+        this.tvHue = inflate.findViewById(R.id.tv_hue);
+        this.tvSaturation = inflate.findViewById(R.id.tv_saturation);
+
+
         this.viewPagerTune = findViewById;
         findViewById.setAdapter(new TuneViewPagerAdapter(getChildFragmentManager(), getActivity(), new TuneImageFragmentListener() {
             public void onBrightnessChanged(int i) {
@@ -53,6 +77,76 @@ public class TuneFragment extends Fragment {
         }));
         this.viewPagerTune.setOffscreenPageLimit(4);
         this.tabLayoutTune.setupWithViewPager(this.viewPagerTune);
+
+        //
+        this.sbBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
+                tvBrightness.setText(String.valueOf(i - 50));
+                if (listener != null) {
+                    listener.onBrightnessChosse(i);
+                }
+
+            }
+        });
+
+
+        this.sbContrast.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
+                tvContrast.setText(String.valueOf(i - 50));
+                if (listener != null) {
+                    listener.onBrightnessChosse(i);
+                }
+
+            }
+        });
+
+        this.sbHue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
+                tvHue.setText(String.valueOf(i - 50));
+                if (listener != null) {
+                    listener.onBrightnessChosse(i);
+                }
+
+            }
+        });
+
+        this.sbSaturation.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
+                tvSaturation.setText(String.valueOf(i - 50));
+                if (listener != null) {
+                    listener.onBrightnessChosse(i);
+                }
+
+            }
+        });
         return inflate;
     }
+
+
 }
+
+
