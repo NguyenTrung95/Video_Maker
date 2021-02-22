@@ -17,12 +17,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="?attr/page.bg">
+             android:background="@color/white">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/media_grid_spacing"

@@ -3034,4 +3034,10 @@
 <!--    <style name="Widget.Support.CoordinatorLayout" parent="@android:style/Widget">-->
 <!--        <item name="statusBarBackground">#ff000000</item>-->
 <!--    </style>-->
+
+    <style name="Widget.Design.TopSheet.Modal" parent="android:Widget">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="behavior_peekHeight">@dimen/top_sheet_modal_peek_height</item>
+        <item name="behavior_hideable">true</item>
+    </style>
 </resources>

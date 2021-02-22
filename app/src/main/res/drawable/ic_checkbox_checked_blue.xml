@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="@color/blue" />
+            <stroke android:color="@color/white" android:width="2.1dp"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_checkbox_checkmark_circle" />
+</layer-list>

@@ -13,10 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<RelativeLayout
     android:id="@+id/root"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -28,17 +35,34 @@
         android:background="?colorPrimary"
         android:elevation="4dp"
         android:theme="?toolbar"
+        android:backgroundTint="@color/colorWhite"
         tools:targetApi="lollipop">
 
-        <TextView
-            android:id="@+id/selected_album"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            android:drawableRight="@drawable/ic_arrow_drop_down_white_24dp"
-            android:foreground="?selectableItemBackground"
-            android:gravity="center"
-            android:textColor="?attr/album.element.color"
-            android:textSize="20sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <TextView
+                android:id="@+id/selected_album"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginEnd="5dp"
+                android:drawableRight="@drawable/ic_menu_arrow_down_black_24dp"
+                android:drawablePadding="5dp"
+                android:ellipsize="end"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:clickable="false"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_menu_arrow_down_black_24dp" />
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
@@ -47,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?attr/bottomToolbar.bg"
+        android:backgroundTint="@color/colorWhite"
         android:elevation="4dp"
         tools:targetApi="lollipop">
 
@@ -58,13 +83,14 @@
             android:foreground="?selectableItemBackground"
             android:padding="16dp"
             android:text="@string/button_preview"
+            android:visibility="gone"
             android:textColor="?attr/bottomToolbar.preview.textColor"
             android:textSize="16sp" />
 
         <LinearLayout
             android:padding="16dp"
             android:id="@+id/originalLayout"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -101,8 +127,35 @@
             android:layout_gravity="end"
             android:foreground="?selectableItemBackground"
             android:padding="16dp"
+            android:visibility="gone"
             android:textColor="?attr/bottomToolbar.apply.textColor"
             android:textSize="16sp" />
+        <RelativeLayout
+            android:id="@id/listPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="80.0dip">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/recyclerPhoto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="@dimen/_8sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:layout_toStartOf="@+id/movie_add_float"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/movie_add_float"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/selected_border"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:padding="14.0dip"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_arrow_next" />
+        </RelativeLayout>
     </FrameLayout>
 
     <FrameLayout
@@ -111,6 +164,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_toolbar"
         android:layout_below="@id/toolbar"
+        android:background="@color/white"
         android:visibility="gone" />
 
     <FrameLayout
@@ -135,3 +189,50 @@
 
     </FrameLayout>
 </RelativeLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/topSheetWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchorGravity="bottom"
+        android:layout_marginTop="?actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:id="@+id/top_sheet"
+            android:layout_width="match_parent"
+            app:layout_behavior="com.matisse.TopSheet.TopSheetBehavior"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/albumList"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                android:background="#FFFFFF"
+                android:layout_above="@id/blackBar"
+                tools:listitem="@layout/item_image_album"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <FrameLayout
+                android:layout_alignParentBottom="true"
+                android:id="@+id/blackBar"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bg_bottom_rounded"
+                android:backgroundTint="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="32dp">
+                <View
+                    android:layout_gravity="center"
+                    android:background="@color/black"
+                    android:layout_width="50dp"
+                    android:layout_height="5dp"/>
+            </FrameLayout>
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
