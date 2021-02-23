@@ -28,7 +28,9 @@
         <activity
             android:name="com.matisse.ui.ActivityEditSelectedPhoto"
             android:label="@string/title_activity_edit_selected_photo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
 
         <activity
             android:windowSoftInputMode="stateHidden|adjustNothing"
