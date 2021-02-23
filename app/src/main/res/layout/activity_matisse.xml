@@ -21,177 +21,174 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<RelativeLayout
-    android:id="@+id/root"
-    android:background="@color/white"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-        <RelativeLayout
-            android:id="@+id/toolbar"
-            android:backgroundTint="@color/colorWhite"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
-            <ImageView
-                android:id="@+id/imv_back"
-                android:src="@drawable/ic_back"
-                android:layout_margin="@dimen/_6sdp"
-                android:layout_centerVertical="true"
-                android:clickable="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/selected_album"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:layout_marginEnd="5dp"
-                android:drawableRight="@drawable/ic_menu_arrow_down_black_24dp"
-                android:drawablePadding="5dp"
-                android:layout_marginStart="@dimen/_30sdp"
-                android:ellipsize="end"
-                android:foreground="?selectableItemBackground"
-                android:gravity="center"
-                android:text="Your Gallery"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/btn_drop_list"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:clickable="false"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_drop_down" />
-        </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/bottom_toolbar"
+    <RelativeLayout
+        android:id="@+id/root"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/bottomToolbar.bg"
-        android:backgroundTint="@color/colorWhite"
-        android:elevation="4dp"
-        tools:targetApi="lollipop">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/button_preview"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:foreground="?selectableItemBackground"
-            android:padding="16dp"
-            android:text="@string/button_preview"
-            android:visibility="gone"
-            android:textColor="?attr/bottomToolbar.preview.textColor"
-            android:textSize="16sp" />
+            android:background="?colorPrimary"
+            android:elevation="4dp"
+            android:theme="?toolbar"
+            android:backgroundTint="@color/colorWhite"
+            tools:targetApi="lollipop">
 
-        <LinearLayout
-            android:padding="16dp"
-            android:id="@+id/originalLayout"
-            android:visibility="gone"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:foreground="?selectableItemBackground"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <TextView
+                    android:id="@+id/selected_album"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginEnd="5dp"
+                    android:drawableRight="@drawable/ic_menu_arrow_down_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:ellipsize="end"
+                    android:foreground="?selectableItemBackground"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:clickable="false"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_drop_down"/>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/bottom_toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:showIn="@layout/activity_matisse">
-
-
-            <com.matisse.internal.ui.widget.CheckRadioView
-                android:id="@+id/original"
-                android:src="@drawable/ic_preview_radio_off"
-                android:layout_gravity="center_vertical"
-                android:layout_width="16dp"
-                android:layout_height="16dp" />
+            android:layout_alignParentBottom="true"
+            android:background="?attr/bottomToolbar.bg"
+            android:backgroundTint="@color/colorWhite"
+            android:elevation="4dp"
+            tools:targetApi="lollipop">
 
             <TextView
+                android:id="@+id/button_preview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:enabled="true"
-                android:paddingStart="4dp"
-                android:paddingLeft="4dp"
-                android:text="@string/button_original"
+                android:layout_gravity="start"
+                android:foreground="?selectableItemBackground"
+                android:padding="16dp"
+                android:text="@string/button_preview"
+                android:visibility="gone"
                 android:textColor="?attr/bottomToolbar.preview.textColor"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/button_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:foreground="?selectableItemBackground"
-            android:padding="16dp"
-            android:visibility="gone"
-            android:textColor="?attr/bottomToolbar.apply.textColor"
-            android:textSize="16sp" />
-        <RelativeLayout
-            android:id="@id/listPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="80.0dip">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@id/recyclerPhoto"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_margin="@dimen/_8sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            <LinearLayout
+                android:padding="16dp"
+                android:id="@+id/originalLayout"
+                android:visibility="gone"
                 android:orientation="horizontal"
-                android:layout_toStartOf="@+id/movie_add_float"
-                android:layout_gravity="center" />
-
-            <ImageView
-                android:id="@+id/movie_add_float"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@color/selected_border"
-                android:fontFamily="@font/sf_pro_display_medium"
-                android:padding="14.0dip"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_arrow_next" />
-        </RelativeLayout>
-    </FrameLayout>
+                android:layout_width="wrap_content"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="wrap_content"
+                tools:showIn="@layout/activity_matisse">
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_toolbar"
-        android:layout_below="@id/toolbar"
-        android:background="@color/white"
-        android:visibility="gone" />
 
-    <FrameLayout
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_toolbar"
-        android:layout_below="@id/toolbar"
-        android:visibility="gone">
+                <com.matisse.internal.ui.widget.CheckRadioView
+                    android:id="@+id/original"
+                    android:src="@drawable/ic_preview_radio_off"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" />
 
-        <TextView
-            android:id="@+id/empty_view_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawablePadding="8dp"
-            android:drawableTop="?attr/album.emptyView"
-            android:gravity="center"
-            android:text="@string/empty_text"
-            android:textColor="?attr/album.emptyView.textColor"
-            android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:enabled="true"
+                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
+                    android:text="@string/button_original"
+                    android:textColor="?attr/bottomToolbar.preview.textColor"
+                    android:textSize="14sp" />
 
-    </FrameLayout>
-</RelativeLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/button_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:foreground="?selectableItemBackground"
+                android:padding="16dp"
+                android:visibility="gone"
+                android:textColor="?attr/bottomToolbar.apply.textColor"
+                android:textSize="16sp" />
+            <RelativeLayout
+                android:id="@id/listPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="80.0dip">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@id/recyclerPhoto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="@dimen/_8sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:layout_toStartOf="@+id/movie_add_float"
+                    android:layout_gravity="center" />
+
+                <ImageView
+                    android:id="@+id/movie_add_float"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/selected_border"
+                    android:fontFamily="@font/sf_pro_display_medium"
+                    android:padding="14.0dip"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_arrow_next" />
+            </RelativeLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_toolbar"
+            android:layout_below="@id/toolbar"
+            android:background="@color/white"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_toolbar"
+            android:layout_below="@id/toolbar"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/empty_view_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="8dp"
+                android:drawableTop="?attr/album.emptyView"
+                android:gravity="center"
+                android:text="@string/empty_text"
+                android:textColor="?attr/album.emptyView.textColor"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+    </RelativeLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/topSheetWrapper"

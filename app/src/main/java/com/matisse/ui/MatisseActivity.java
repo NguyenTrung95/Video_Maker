@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,18 +31,20 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import com.devchie.videomaker.adaper.PhotoAdapter;
+
 
 import com.devchie.videomaker.R;
-import com.devchie.videomaker.adaper.PhotoAdapter;
 import com.devchie.videomaker.helper.MyConstant;
 import com.devchie.videomaker.listener.ItemClickListener;
 import com.devchie.videomaker.model.Photo;
@@ -98,6 +102,7 @@ public class MatisseActivity extends AppCompatActivity implements
     private View mEmptyView;
     private View mAlbumTopSheet;
     private View mSelectedAlbumView;
+    private View listPhoto;
 
     private LinearLayout mOriginalLayout;
     private CheckRadioView mOriginal;
@@ -110,9 +115,6 @@ public class MatisseActivity extends AppCompatActivity implements
 
     private ArrayList<Photo> mSelectedPhotos = new ArrayList<>();
 
-    private ImageView imvBack;
-    private ImageView imvDropList;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // programmatically set theme before super.onCreate()
@@ -124,15 +126,8 @@ public class MatisseActivity extends AppCompatActivity implements
             finish();
             return;
         }
-
         setContentView(R.layout.activity_matisse);
-        findViewById(R.id.imv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        });
+
         if (mSpec.needOrientationRestriction()) {
             setRequestedOrientation(mSpec.orientation);
         }
@@ -144,18 +139,20 @@ public class MatisseActivity extends AppCompatActivity implements
             mMediaStoreCompat.setCaptureStrategy(mSpec.captureStrategy);
         }
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowTitleEnabled(false);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        Drawable navigationIcon = toolbar.getNavigationIcon();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        Drawable navigationIcon = toolbar.getNavigationIcon();
         TypedArray ta = getTheme().obtainStyledAttributes(new int[]{R.attr.album_element_color});
         int color = ta.getColor(0, 0);
         ta.recycle();
-        //navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
         mButtonPreview = (TextView) findViewById(R.id.button_preview);
+        listPhoto = findViewById(R.id.listPhoto);
+        listPhoto.setVisibility(View.GONE);
         mButtonApply = (TextView) findViewById(R.id.button_apply);
         mButtonPreview.setOnClickListener(this);
         mButtonApply.setOnClickListener(this);
@@ -167,7 +164,6 @@ public class MatisseActivity extends AppCompatActivity implements
         mRcvPhoto = findViewById(R.id.recyclerPhoto);
         mRcvAlbum = findViewById(R.id.albumList);
         mAlbumTopSheet = findViewById(R.id.top_sheet);
-        imvDropList = findViewById(R.id.btn_drop_list);
 
         mSelectedCollection.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
@@ -188,7 +184,7 @@ public class MatisseActivity extends AppCompatActivity implements
         View topSheetWrapper = findViewById(R.id.topSheetWrapper);
         mSelectedAlbumView =  findViewById(R.id.selected_album);
         mTopSheetBehavior = TopSheetBehavior.from(mAlbumTopSheet);
-        findViewById(R.id.btn_drop_list).setOnClickListener(view -> {
+        mSelectedAlbumView.setOnClickListener(view -> {
             if (mTopSheetState == TopSheetBehavior.STATE_COLLAPSED) {
                 mTopSheetBehavior.setState(TopSheetBehavior.STATE_EXPANDED);
                 mTopSheetState = TopSheetBehavior.STATE_EXPANDED;
@@ -201,13 +197,6 @@ public class MatisseActivity extends AppCompatActivity implements
                 }
             }
         });
-
-        /*findViewById(R.id.imv_back).setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        });*/
-
         findViewById(R.id.blackBar).setOnClickListener(view -> mSelectedAlbumView.callOnClick());
         findViewById(R.id.movie_add_float).setOnClickListener(view -> {
             if (mSelectedCollection == null || mSelectedCollection.count() < 1) return;
@@ -256,7 +245,7 @@ public class MatisseActivity extends AppCompatActivity implements
                 mPhotoAdapter.notifyItemRemoved(i);
                 //update selection list on view
                 Fragment mediaSelectionFragment = getSupportFragmentManager().findFragmentByTag(
-                    MediaSelectionFragment.class.getSimpleName());
+                        MediaSelectionFragment.class.getSimpleName());
                 if (mediaSelectionFragment instanceof MediaSelectionFragment) {
                     ((MediaSelectionFragment) mediaSelectionFragment).refreshMediaGrid();
                 }
@@ -347,7 +336,7 @@ public class MatisseActivity extends AppCompatActivity implements
             result.putStringArrayListExtra(EXTRA_RESULT_SELECTION_PATH, selectedPath);
             setResult(RESULT_OK, result);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-             MatisseActivity.this.revokeUriPermission(contentUri,
+                MatisseActivity.this.revokeUriPermission(contentUri,
                         Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             new SingleMediaScanner(this.getApplicationContext(), path, new SingleMediaScanner.ScanListener() {
@@ -358,25 +347,25 @@ public class MatisseActivity extends AppCompatActivity implements
             finish();
         }else {
             if (requestCode == MyConstant.REQUEST_CODE_EDIT_IMAGES) {
-               List<Item> items = data.getParcelableArrayListExtra(MyConstant.KEY_SELECTED_IMAGES);
-               if (items != null){
-                   mSelectedCollection.overwrite(new ArrayList<>(items), mSelectedCollection.getCollectionType());
-                   mSelectedPhotos.clear();
-                   for (int i = 0; i < items.size(); i++){
-                       mSelectedPhotos.add(new Photo(
-                           items.get(i).id,
-                           PathUtils.getPath(this, items.get(i).getContentUri()))
-                       );
-                   }
+                List<Item> items = data.getParcelableArrayListExtra(MyConstant.KEY_SELECTED_IMAGES);
+                if (items != null){
+                    mSelectedCollection.overwrite(new ArrayList<>(items), mSelectedCollection.getCollectionType());
+                    mSelectedPhotos.clear();
+                    for (int i = 0; i < items.size(); i++){
+                        mSelectedPhotos.add(new Photo(
+                                items.get(i).id,
+                                PathUtils.getPath(this, items.get(i).getContentUri()))
+                        );
+                    }
 
-                   Fragment mediaSelectionFragment = getSupportFragmentManager().findFragmentByTag(
-                       MediaSelectionFragment.class.getSimpleName());
-                   if (mediaSelectionFragment instanceof MediaSelectionFragment) {
-                       ((MediaSelectionFragment) mediaSelectionFragment).refreshMediaGrid();
-                   }
+                    Fragment mediaSelectionFragment = getSupportFragmentManager().findFragmentByTag(
+                            MediaSelectionFragment.class.getSimpleName());
+                    if (mediaSelectionFragment instanceof MediaSelectionFragment) {
+                        ((MediaSelectionFragment) mediaSelectionFragment).refreshMediaGrid();
+                    }
 
-                   mPhotoAdapter.notifyDataSetChanged();
-               }
+                    mPhotoAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
@@ -385,14 +374,17 @@ public class MatisseActivity extends AppCompatActivity implements
 
         int selectedCount = mSelectedCollection.count();
         if (selectedCount == 0) {
+            listPhoto.setVisibility(View.GONE);
             mButtonPreview.setEnabled(false);
             mButtonApply.setEnabled(false);
             mButtonApply.setText(getString(R.string.button_apply_default));
         } else if (selectedCount == 1 && mSpec.singleSelectionModeEnabled()) {
+            listPhoto.setVisibility(View.VISIBLE);
             mButtonPreview.setEnabled(true);
             mButtonApply.setText(R.string.button_apply_default);
             mButtonApply.setEnabled(true);
         } else {
+            listPhoto.setVisibility(View.VISIBLE);
             mButtonPreview.setEnabled(true);
             mButtonApply.setEnabled(true);
             mButtonApply.setText(getString(R.string.button_apply, selectedCount));
@@ -539,6 +531,7 @@ public class MatisseActivity extends AppCompatActivity implements
             mContainer.setVisibility(View.GONE);
             mEmptyView.setVisibility(View.VISIBLE);
         } else {
+            ((TextView)mSelectedAlbumView).setText(album.getDisplayName(this));
             mContainer.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
             Fragment fragment = MediaSelectionFragment.newInstance(album);
@@ -564,12 +557,12 @@ public class MatisseActivity extends AppCompatActivity implements
         int photoSize = mSelectedPhotos.size();
         if (photoSize < itemSize){//added new item
             //int photoSize = mSelectedPhotos.size();
-           // for (int i = photoSize - 1; i < itemSize; i++){
-                mSelectedPhotos.add(new Photo(
+            // for (int i = photoSize - 1; i < itemSize; i++){
+            mSelectedPhotos.add(new Photo(
                     items.get(itemSize - 1).id,
                     PathUtils.getPath(this, items.get(itemSize - 1).getContentUri()))
-                );
-           // }
+            );
+            // }
             mPhotoAdapter.notifyItemInserted(photoSize);
         } else {
             if (photoSize > itemSize){//deleted an item
