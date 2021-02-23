@@ -1,14 +1,11 @@
 package com.matisse.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import com.devchie.photoeditor.activity.EditPhotoActivity;
-import com.devchie.videomaker.helper.MyConstant;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +13,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.widget.TextView;
-
+import com.devchie.photoeditor.activity.EditPhotoActivity;
 import com.devchie.videomaker.R;
+import com.devchie.videomaker.activities.MovieActivity;
+import com.devchie.videomaker.ads.AdmobAds;
+import com.devchie.videomaker.ads.FacebookAds;
+import com.devchie.videomaker.helper.MyConstant;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matisse.internal.entity.Item;
 import com.matisse.internal.utils.ImageEditCallback;
 import com.matisse.internal.utils.PathUtils;
@@ -34,7 +34,9 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
     private ImageEditAdapter adapter;
 
     private String selectedString = "";
-
+    private ProgressDialog progressDialog;
+    private ArrayList<String> sendPhotos = new ArrayList<>();
+    private List<Item> items;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,18 +71,56 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
         initImageList();
 
         vDone.setOnClickListener(view -> {
-            Intent resultData = new Intent();
+            ProgressDialog progressDialog2 = new ProgressDialog(this);
+            this.progressDialog = progressDialog2;
+            progressDialog2.setMessage(getString(R.string.com_facebook_loading));
+            this.progressDialog.setCanceledOnTouchOutside(false);
+            this.progressDialog.show();
+            this.sendPhotos.clear();
+            for (int i = 0; i < this.items.size(); i++) {
+                this.sendPhotos.add(this.items.get(i).uri.toString());
+            }
+            createMovie();
+          /*  Intent resultData = new Intent();
             resultData.putParcelableArrayListExtra(MyConstant.KEY_SELECTED_IMAGES, new ArrayList<>(adapter.getItems()));
             setResult(RESULT_OK, resultData);
-            finish();
+            finish();*/
         });
         vBack.setOnClickListener(view -> onBackPressed());
     }
 
+    private void createMovie() {
+        if (this.sendPhotos.size() < 3) {
+            ProgressDialog progressDialog2 = this.progressDialog;
+            if (progressDialog2 != null && progressDialog2.isShowing()) {
+                this.progressDialog.dismiss();
+            }
+            Toast.makeText(this, getString(R.string.more_than_3_photos), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent intent = new Intent(this, MovieActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("PHOTO", this.sendPhotos);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        if (!FacebookAds.showFullAds(null)) {
+            AdmobAds.showFullAds(null);
+        }
+    }
+
+    public void onStop() {
+        ProgressDialog progressDialog2 = this.progressDialog;
+        if (progressDialog2 != null && progressDialog2.isShowing()) {
+            this.progressDialog.dismiss();
+        }
+        super.onStop();
+    }
+
+
     private void initImageList() {
         Bundle imageBundle = getIntent().getExtras();
         if (imageBundle != null) {
-            List<Item> items = imageBundle.getParcelableArrayList(MyConstant.KEY_SELECTED_IMAGES);
+            items = imageBundle.getParcelableArrayList(MyConstant.KEY_SELECTED_IMAGES);
             adapter = new ImageEditAdapter(items, new ImageEditAdapter.OnItemInteraction() {
                 @Override
                 public void onItemRemoved(Item item, int position) {

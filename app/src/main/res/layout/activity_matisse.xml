@@ -28,19 +28,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        android:elevation="4dp"
-        android:theme="?toolbar"
-        android:backgroundTint="@color/colorWhite"
-        tools:targetApi="lollipop">
 
         <RelativeLayout
+            android:id="@+id/toolbar"
+            android:backgroundTint="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize">
+            <ImageView
+                android:id="@+id/imv_back"
+                android:src="@drawable/ic_back"
+                android:layout_margin="@dimen/_6sdp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/selected_album"
@@ -52,18 +53,19 @@
                 android:ellipsize="end"
                 android:foreground="?selectableItemBackground"
                 android:gravity="center"
+                android:text="Your Gallery"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <ImageView
+                android:id="@+id/btn_drop_list"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="5dp"
                 android:clickable="false"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_menu_arrow_down_black_24dp" />
+                android:src="@drawable/ic_drop_down" />
         </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/bottom_toolbar"

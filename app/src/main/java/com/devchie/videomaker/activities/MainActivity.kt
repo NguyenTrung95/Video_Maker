@@ -1,30 +1,25 @@
 package com.devchie.videomaker.activities
 
-import android.os.Bundle
-import com.devchie.videomaker.ads.AdmobAds
-import com.devchie.videomaker.ads.AdmobAds.OnAdsCloseListener
-import com.devchie.videomaker.ads.FacebookAds
-import com.devchie.videomaker.R
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.karumi.dexter.MultiplePermissionsReport
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
-import com.devchie.videomaker.activities.SelectedPhotoActivity
-import com.devchie.videomaker.dialog.SettingDialog
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequestErrorListener
-import com.karumi.dexter.listener.DexterError
 import android.widget.Toast
-import com.devchie.videomaker.model.MySharedPreferences
+import com.devchie.videomaker.R
+import com.devchie.videomaker.ads.AdmobAds
+import com.devchie.videomaker.ads.AdmobAds.OnAdsCloseListener
+import com.devchie.videomaker.ads.FacebookAds
 import com.devchie.videomaker.dialog.RateDialog
-import com.devchie.videomaker.activities.ThankYouActivity
+import com.devchie.videomaker.dialog.SettingDialog
+import com.devchie.videomaker.model.MySharedPreferences
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
-import java.lang.Exception
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
 class MainActivity : BaseSplitActivity() {
     var doubleBackToExitPressedOnce = false
@@ -53,7 +48,7 @@ class MainActivity : BaseSplitActivity() {
                 Dexter.withContext(this).withPermissions("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE").withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) {
                         if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                            this@MainActivity.startActivity(Intent(this@MainActivity, SelectedPhotoActivity::class.java))
+                           this@MainActivity.startActivity(Intent(this@MainActivity, SelectedPhotoActivity::class.java))
                         }
                         if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied) {
                             SettingDialog.showSettingDialog(this@MainActivity)

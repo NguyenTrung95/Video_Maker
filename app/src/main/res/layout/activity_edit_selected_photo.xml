@@ -71,7 +71,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="@color/blue"
-        app:srcCompat="@drawable/ic_add"
+        app:srcCompat="@drawable/ic_floating"
         tools:ignore="ContentDescription" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

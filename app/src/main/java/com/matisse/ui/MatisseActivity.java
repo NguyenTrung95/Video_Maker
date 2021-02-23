@@ -20,8 +20,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,20 +29,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import com.devchie.videomaker.adaper.PhotoAdapter;
-
 
 import com.devchie.videomaker.R;
+import com.devchie.videomaker.adaper.PhotoAdapter;
 import com.devchie.videomaker.helper.MyConstant;
 import com.devchie.videomaker.listener.ItemClickListener;
 import com.devchie.videomaker.model.Photo;
@@ -114,6 +110,9 @@ public class MatisseActivity extends AppCompatActivity implements
 
     private ArrayList<Photo> mSelectedPhotos = new ArrayList<>();
 
+    private ImageView imvBack;
+    private ImageView imvDropList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // programmatically set theme before super.onCreate()
@@ -138,16 +137,16 @@ public class MatisseActivity extends AppCompatActivity implements
             mMediaStoreCompat.setCaptureStrategy(mSpec.captureStrategy);
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        Drawable navigationIcon = toolbar.getNavigationIcon();
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        Drawable navigationIcon = toolbar.getNavigationIcon();
         TypedArray ta = getTheme().obtainStyledAttributes(new int[]{R.attr.album_element_color});
         int color = ta.getColor(0, 0);
         ta.recycle();
-        navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        //navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
         mButtonPreview = (TextView) findViewById(R.id.button_preview);
         mButtonApply = (TextView) findViewById(R.id.button_apply);
@@ -161,6 +160,7 @@ public class MatisseActivity extends AppCompatActivity implements
         mRcvPhoto = findViewById(R.id.recyclerPhoto);
         mRcvAlbum = findViewById(R.id.albumList);
         mAlbumTopSheet = findViewById(R.id.top_sheet);
+        imvDropList = findViewById(R.id.btn_drop_list);
 
         mSelectedCollection.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
@@ -181,7 +181,7 @@ public class MatisseActivity extends AppCompatActivity implements
         View topSheetWrapper = findViewById(R.id.topSheetWrapper);
         mSelectedAlbumView =  findViewById(R.id.selected_album);
         mTopSheetBehavior = TopSheetBehavior.from(mAlbumTopSheet);
-        mSelectedAlbumView.setOnClickListener(view -> {
+        findViewById(R.id.btn_drop_list).setOnClickListener(view -> {
             if (mTopSheetState == TopSheetBehavior.STATE_COLLAPSED) {
                 mTopSheetBehavior.setState(TopSheetBehavior.STATE_EXPANDED);
                 mTopSheetState = TopSheetBehavior.STATE_EXPANDED;
@@ -194,6 +194,13 @@ public class MatisseActivity extends AppCompatActivity implements
                 }
             }
         });
+
+        /*findViewById(R.id.imv_back).setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });*/
+
         findViewById(R.id.blackBar).setOnClickListener(view -> mSelectedAlbumView.callOnClick());
         findViewById(R.id.movie_add_float).setOnClickListener(view -> {
             if (mSelectedCollection == null || mSelectedCollection.count() < 1) return;
