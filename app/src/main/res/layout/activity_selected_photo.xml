@@ -7,19 +7,6 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@id/tv_tip"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/movie_add_float"
-        android:layout_marginBottom="16.0dip"
-        android:gravity="center"
-        android:visibility="gone"
-        android:paddingLeft="16.0dip"
-        android:paddingRight="16.0dip"
-        android:text="@string/drag_drop"
-        android:textColor="@color/un_selected_white" />
-
 
     <FrameLayout
 
@@ -88,7 +75,8 @@
                 android:background="@drawable/circle_action"
                 android:paddingStart="12.0dip"
                 android:paddingEnd="12.0dip"
-                android:src="@drawable/ic_add"
+                android:visibility="gone"
+                android:src="@drawable/ic_floating"
                 android:backgroundTint="@color/black" />
 
             <TextView
@@ -110,6 +98,7 @@
             android:src="@drawable/ic_edit_photo"
             android:tint="@color/black"
 
+            android:visibility="gone"
             app:backgroundTint="@color/selected_border"
             app:rippleColor="#ffffffff" />
 
@@ -119,9 +108,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center|left"
             android:layout_margin="16.0dip"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_floating"
             android:tint="@color/black"
-
+            android:visibility="gone"
             app:backgroundTint="@color/selected_border"
             app:rippleColor="#ffffffff" />
     </androidx.cardview.widget.CardView>

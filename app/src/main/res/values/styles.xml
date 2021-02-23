@@ -114,7 +114,11 @@
         <item name="android:popupBackground">@color/dracula_album_popup_bg</item>
     </style>
 
-<!--    <style name="Animation.MaterialComponents.BottomSheetDialog" parent="@style/Animation.AppCompat.Dialog">-->
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">7sp</item>
+    </style>
+
+    <!--    <style name="Animation.MaterialComponents.BottomSheetDialog" parent="@style/Animation.AppCompat.Dialog">-->
 <!--        <item name="android:windowEnterAnimation">@anim/mtrl_bottom_sheet_slide_in</item>-->
 <!--        <item name="android:windowExitAnimation">@anim/mtrl_bottom_sheet_slide_out</item>-->
 <!--    </style>-->

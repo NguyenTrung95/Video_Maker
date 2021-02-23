@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -178,6 +180,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     private ViewPager viewPagerTextTools;
     private int widthDevice;
     private int widthStroke = 1;
+    private String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
 
     public void onEmoticons() {
     }
@@ -200,6 +203,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     public void onStopViewChangeListener(ViewType viewType) {
     }
 
+    private ViewPagerCustomAdapter  mViewPagerAdapter = null;
 
     public void onCreate(Bundle bundle) {
         //activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -232,9 +236,69 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         Log.d("XXXXXX", "Time5 " + (SystemClock.currentThreadTimeMillis() - currentThreadTimeMillis5));
         long currentThreadTimeMillis6 = SystemClock.currentThreadTimeMillis();
         setupTabIconsTextTool();
-        setupTabIconsImageTool();
+        //setupTabIconsImageTool();
         Log.d("XXXXXX", "Time6 " + (SystemClock.currentThreadTimeMillis() - currentThreadTimeMillis6));
         SystemClock.currentThreadTimeMillis();
+
+        initTabBar();
+    }
+
+    int[] tabsIcons = {
+            R.drawable.ic_add_text,
+            R.drawable.ic_overplay,
+            R.drawable.ic_emoji,
+            R.drawable.ic_add_sticker,
+            R.drawable.ic_tune};
+
+    private void initTabBar(){
+        mViewPagerAdapter = new ViewPagerCustomAdapter(fragmentManager);
+
+        mViewPagerAdapter.addFragment(tabs[0],
+                new Fragment());
+        mViewPagerAdapter.addFragment(tabs[4], new OverlaysFragment());
+
+        mViewPagerAdapter.addFragment(tabs[2],
+                new EmojiFragment()
+        );
+        mViewPagerAdapter.addFragment(tabs[3],
+                new StickerFragment()
+        );
+        mViewPagerAdapter.addFragment(tabs[4],
+                new TuneFragment()
+        );
+        viewPagerImageTools.setAdapter(mViewPagerAdapter);
+        viewPagerImageTools.setOffscreenPageLimit(5);
+        tablayoutImageTools.setupWithViewPager(viewPagerImageTools);
+        viewPagerImageTools.setCurrentItem(0);
+
+        //Init
+        for (int i = 0; i <  tablayoutImageTools.getTabCount();i++) {
+            Drawable drawable = ContextCompat.getDrawable(this, tabsIcons[i]);
+            drawable.clearColorFilter();
+            tablayoutImageTools.getTabAt(i).setIcon(tabsIcons[i]);
+        }
+
+        tablayoutImageTools.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.blue));
+
+        tablayoutImageTools.getTabAt(0).getIcon().setTint(getResources().getColor(R.color.blue));
+        tablayoutImageTools.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getIcon().setTint(getResources().getColor(R.color.blue));
+                if (tab.getPosition() == 0) viewPagerImageTools.setVisibility(View.GONE);
+                else viewPagerImageTools.setVisibility(View.VISIBLE);
+
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setTint(getResources().getColor(R.color.black));
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
     }
 
     private void setImageTranparency() {
@@ -358,12 +422,39 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
 
 
     @SuppressLint("WrongConstant")
-
+/*
     private void setupTabIconsImageTool() {
         String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
+        String[] tabsTitles = {
+                getString(R.string.tab_title_1),
+                getString(R.string.tab_title_2),
+                getString(R.string.tab_title_3),
+                getString(R.string.tab_title_4),
+                getString(R.string.tab_title_5)};
+
+
+        int[] tabsIcons = {
+                R.drawable.ic_add_text,
+                R.drawable.ic_overplay,
+                R.drawable.ic_emoji,
+                 R.drawable.ic_add_sticker,
+                R.drawable.ic_tune};
+
         this.addTextTabIndex = 0;
 
-        for(int i = 0; i < tabs.length; i++){
+        for (int i = 0; i < tabsIcons.length; i++) {
+
+            TextView tab_text = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
+            tab_text.setText(tabsTitles[i]);
+            tab_text.setCompoundDrawablesWithIntrinsicBounds(0, tabsIcons[i], 0, 0);
+            tablayoutImageTools.getTabAt(i).setCustomView(tab_text);
+        }
+
+        tablayoutImageTools.setTabTextColors(getResources().getColor(R.color.grey_400),getResources().getColor(R.color.blue));
+
+
+
+       *//* for(int i = 0; i < tabs.length; i++){
             switch (i){
                 case 0:
                     TextView textView1 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
@@ -405,7 +496,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
 
             }
         }
-
+*//*
 
 
         if ((getResources().getConfiguration().screenLayout & 15) == 4) {
@@ -442,9 +533,10 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
                 }
             }
         });
-    }
+    }*/
 
     private void setupViewPagerImageTools(ViewPager viewPager) {
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFrag(new Fragment(), "Text");
      /*   AddTextFragment addTextFragment = new AddTextFragment();

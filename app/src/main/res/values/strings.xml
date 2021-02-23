@@ -157,5 +157,10 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="previous">Previous</string>
     <string name="selected">Selected</string>
+    <string name="tab_title_1">Add text</string>
+    <string name="tab_title_2">Overlays</string>
+    <string name="tab_title_3">Emoju</string>
+    <string name="tab_title_4">Sticker</string>
+    <string name="tab_title_5">Tune</string>
 
 </resources>

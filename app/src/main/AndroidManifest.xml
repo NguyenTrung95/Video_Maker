@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified"
             android:name="com.devchie.photoeditor.activity.EditPhotoActivity">
         </activity>
 
