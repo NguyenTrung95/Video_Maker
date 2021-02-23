@@ -113,11 +113,18 @@ public class AlbumsSpinner {
 
             @Override
             public void onClick(View v) {
-                int itemHeight = v.getResources().getDimensionPixelSize(R.dimen.album_item_height);
-                mListPopupWindow.setHeight(
-                        mAdapter.getCount() > MAX_SHOWN_COUNT ? itemHeight * MAX_SHOWN_COUNT
-                                : itemHeight * mAdapter.getCount());
-                mListPopupWindow.show();
+                if(mListPopupWindow != null  && !mListPopupWindow.isShowing()){
+                    try{
+                        int itemHeight = v.getResources().getDimensionPixelSize(R.dimen.album_item_height);
+                        mListPopupWindow.setHeight(
+                                mAdapter.getCount() > MAX_SHOWN_COUNT ? itemHeight * MAX_SHOWN_COUNT
+                                        : itemHeight * mAdapter.getCount());
+                        mListPopupWindow.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
             }
         });
         mSelected.setOnTouchListener(mListPopupWindow.createDragToOpenListener(mSelected));

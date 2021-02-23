@@ -40,6 +40,7 @@ import com.matisse.ui.MatisseActivity;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Set;
 
 import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_BEHIND;
@@ -358,13 +359,16 @@ public final class SelectionCreator {
         }
 
         Intent intent = new Intent(activity, MatisseActivity.class);
-
+        
         Fragment fragment = mMatisse.getFragment();
         if (fragment != null) {
             fragment.startActivityForResult(intent, requestCode);
+            Objects.requireNonNull(fragment.getActivity()).finish();
         } else {
             activity.startActivityForResult(intent, requestCode);
+            activity.finish();
         }
+
     }
 
     public SelectionCreator showPreview(boolean showPreview) {

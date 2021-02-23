@@ -50,6 +50,7 @@
                 android:layout_marginEnd="5dp"
                 android:drawableRight="@drawable/ic_menu_arrow_down_black_24dp"
                 android:drawablePadding="5dp"
+                android:layout_marginStart="@dimen/_30sdp"
                 android:ellipsize="end"
                 android:foreground="?selectableItemBackground"
                 android:gravity="center"
