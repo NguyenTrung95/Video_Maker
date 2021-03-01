@@ -129,7 +129,7 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
 
                 @Override
                 public void onEditClick(Item item, int position) {
-                    toEditPhotoActivity();
+                    toEditPhotoActivity(position);
                 }
             });
             imageRcv.setAdapter(adapter);
@@ -140,7 +140,7 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
         }
     }
 
-    private void toEditPhotoActivity() {
+    private void toEditPhotoActivity(int position) {
         ArrayList<String> pathList = new ArrayList<>();
         for (Item item : adapter.getItems()) {
             pathList.add(PathUtils.getPath(this, item.getContentUri()));
@@ -148,6 +148,7 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
 
         Intent intent = new Intent(this, EditPhotoActivity.class);
         intent.putStringArrayListExtra("PHOTO", pathList);
+        intent.putExtra("POSITION",position);
         startActivity(intent);
     }
 
