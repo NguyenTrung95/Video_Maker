@@ -67,6 +67,7 @@
 
         <FrameLayout
             android:id="@+id/bottom_toolbar"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -132,6 +133,7 @@
                 android:textSize="16sp" />
             <RelativeLayout
                 android:id="@id/listPhoto"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="80.0dip">
 

@@ -109,6 +109,7 @@ public class MatisseActivity extends AppCompatActivity implements
     private RecyclerView mRcvPhoto;
     private RecyclerView mRcvAlbum;
     private boolean mOriginalEnable;
+    private View mBottomToolbar;
 
     private int mTopSheetState = TopSheetBehavior.STATE_COLLAPSED;
     private TopSheetBehavior<View> mTopSheetBehavior;
@@ -164,7 +165,7 @@ public class MatisseActivity extends AppCompatActivity implements
         mRcvPhoto = findViewById(R.id.recyclerPhoto);
         mRcvAlbum = findViewById(R.id.albumList);
         mAlbumTopSheet = findViewById(R.id.top_sheet);
-
+        mBottomToolbar = findViewById(R.id.bottom_toolbar);
         mSelectedCollection.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             mOriginalEnable = savedInstanceState.getBoolean(CHECK_STATE);
@@ -243,6 +244,7 @@ public class MatisseActivity extends AppCompatActivity implements
                 }
                 mSelectedPhotos.remove(i);
                 mPhotoAdapter.notifyItemRemoved(i);
+                showSelectedPhotosContainer();
                 //update selection list on view
                 Fragment mediaSelectionFragment = getSupportFragmentManager().findFragmentByTag(
                         MediaSelectionFragment.class.getSimpleName());
@@ -363,7 +365,7 @@ public class MatisseActivity extends AppCompatActivity implements
                     if (mediaSelectionFragment instanceof MediaSelectionFragment) {
                         ((MediaSelectionFragment) mediaSelectionFragment).refreshMediaGrid();
                     }
-
+                    showSelectedPhotosContainer();
                     mPhotoAdapter.notifyDataSetChanged();
                 }
             }
@@ -562,6 +564,7 @@ public class MatisseActivity extends AppCompatActivity implements
                     items.get(itemSize - 1).id,
                     PathUtils.getPath(this, items.get(itemSize - 1).getContentUri()))
             );
+            mBottomToolbar.setVisibility(View.VISIBLE);
             // }
             mPhotoAdapter.notifyItemInserted(photoSize);
         } else {
@@ -583,6 +586,7 @@ public class MatisseActivity extends AppCompatActivity implements
                     }
                 }
                 mSelectedPhotos.remove(deletedPos);
+                showSelectedPhotosContainer();
                 mPhotoAdapter.notifyItemRemoved(deletedPos);
             }
         }
@@ -609,5 +613,13 @@ public class MatisseActivity extends AppCompatActivity implements
             mMediaStoreCompat.dispatchCaptureIntent(this, REQUEST_CODE_CAPTURE);
         }
     }
+    private void showSelectedPhotosContainer(){
+        if (mSelectedPhotos == null || mSelectedPhotos.isEmpty()){
+            mBottomToolbar.setVisibility(View.GONE);
+        } else {
+            mBottomToolbar.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }
