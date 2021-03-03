@@ -141,15 +141,25 @@ public class MatisseActivity extends AppCompatActivity implements
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        Drawable navigationIcon = toolbar.getNavigationIcon();
+//        TypedArray ta = getTheme().obtainStyledAttributes(new int[]{R.attr.album_element_color});
+//        int color = ta.getColor(0, 0);
+//        ta.recycle();
+//        navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        View vBack = findViewById(R.id.editSelectedPhotoBack);
+
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        Drawable navigationIcon = toolbar.getNavigationIcon();
-        TypedArray ta = getTheme().obtainStyledAttributes(new int[]{R.attr.album_element_color});
-        int color = ta.getColor(0, 0);
-        ta.recycle();
-        navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            //actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        vBack.setOnClickListener(view -> onBackPressed());
+
 
         mButtonPreview = (TextView) findViewById(R.id.button_preview);
         listPhoto = findViewById(R.id.listPhoto);
@@ -186,6 +196,20 @@ public class MatisseActivity extends AppCompatActivity implements
         mSelectedAlbumView =  findViewById(R.id.selected_album);
         mTopSheetBehavior = TopSheetBehavior.from(mAlbumTopSheet);
         mSelectedAlbumView.setOnClickListener(view -> {
+            if (mTopSheetState == TopSheetBehavior.STATE_COLLAPSED) {
+                mTopSheetBehavior.setState(TopSheetBehavior.STATE_EXPANDED);
+                mTopSheetState = TopSheetBehavior.STATE_EXPANDED;
+                topSheetWrapper.setBackgroundColor(Color.parseColor("#40000000"));
+            } else {
+                if (mTopSheetState == TopSheetBehavior.STATE_EXPANDED) {
+                    mTopSheetBehavior.setState(TopSheetBehavior.STATE_COLLAPSED);
+                    mTopSheetState = TopSheetBehavior.STATE_COLLAPSED;
+                    topSheetWrapper.setBackground(null);
+                }
+            }
+        });
+        View edit = findViewById(R.id.editSelectedPhotoDone);
+        edit.setOnClickListener(view -> {
             if (mTopSheetState == TopSheetBehavior.STATE_COLLAPSED) {
                 mTopSheetBehavior.setState(TopSheetBehavior.STATE_EXPANDED);
                 mTopSheetState = TopSheetBehavior.STATE_EXPANDED;

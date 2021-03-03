@@ -106,7 +106,7 @@ public class AlbumsSpinner {
                 new int[]{R.attr.album_element_color});
         int color = ta.getColor(0, 0);
         ta.recycle();
-        right.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+//        right.setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         mSelected.setVisibility(View.GONE);
         mSelected.setOnClickListener(new View.OnClickListener() {

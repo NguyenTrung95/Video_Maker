@@ -42,27 +42,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize">
 
+                <ImageView
+                    android:id="@+id/editSelectedPhotoBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_arrow_back" />
+
                 <TextView
                     android:id="@+id/selected_album"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:layout_marginEnd="5dp"
-                    android:drawableRight="@drawable/ic_menu_arrow_down_black_24dp"
-                    android:drawablePadding="5dp"
-                    android:ellipsize="end"
-                    android:foreground="?selectableItemBackground"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/editSelectedPhotoBack"
+                    android:layout_toStartOf="@id/editSelectedPhotoDone"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="100 selected" />
 
                 <ImageView
+                    android:id="@+id/editSelectedPhotoDone"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="5dp"
-                    android:clickable="false"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_drop_down"/>
+                    android:paddingHorizontal="16dp"
+                    android:src="@drawable/ic_drop_down" />
             </RelativeLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
         <FrameLayout
