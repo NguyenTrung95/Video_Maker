@@ -5,39 +5,49 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     android:layout_width="match_parent"
     android:layout_height="@dimen/text_tool_top_height"
-    android:orientation="vertical" android:background="@color/test11">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/text_tool_top_height_half"
+        android:layout_marginStart="@dimen/_16sdp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <com.devchie.photoeditor.view.RoundFrameLayout
-            android:id="@+id/btn_picker_color_text"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+        <LinearLayout
+            android:id="@+id/ll_picker_color_text"
+            android:layout_width="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:clickable="true"
-            android:padding="3dp"
-            app:rv_cornerRadius="3dp"
-            app:rv_strokeColor="@color/icChecked"
-            app:rv_strokeWidth="2dp">
+            android:layout_marginRight="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_picker_color_text"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_pencil" />
-        </com.devchie.photoeditor.view.RoundFrameLayout>
+                android:src="@drawable/ic_color" />
+
+            <View
+                android:id="@+id/v_selected"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_2sdp"
+                android:visibility="invisible"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/_4sdp"
+                android:background="@color/blue" />
+        </LinearLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_color_text"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/btn_picker_color_text" />
+            android:layout_toRightOf="@+id/ll_picker_color_text" />
     </RelativeLayout>
 
     <LinearLayout
@@ -50,12 +60,47 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:src="@drawable/ic_opacity" />
+            android:src="@drawable/ic_opacity"
+            android:visibility="gone" />
 
-        <SeekBar
-            android:id="@+id/sbTranparencyText"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:padding="@dimen/_8sdp"
+            android:text="Opacity"
+            android:textColor="#333333" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="54dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="@dimen/_16sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_8sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_seek" />
+
+            <SeekBar
+                android:id="@+id/sbTranparencyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_4sdp"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@android:color/transparent"
+                android:progressTint="@color/blue"
+                android:splitTrack="false"
+                android:thumb="@drawable/thumb_image"
+                android:thumbTint="@color/blue" />
+
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

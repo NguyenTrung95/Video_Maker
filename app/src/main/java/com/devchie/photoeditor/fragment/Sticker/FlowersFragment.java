@@ -36,15 +36,15 @@ public class FlowersFragment extends Fragment implements StickerAdapter.StickerA
 
     private ArrayList<Sample> FlowerList() {
         ArrayList<Sample> arrayList = new ArrayList<>();
-        arrayList.add(new Sample(R.drawable.deco1));
-        arrayList.add(new Sample(R.drawable.deco2));
-        arrayList.add(new Sample(R.drawable.deco3));
-        arrayList.add(new Sample(R.drawable.deco4));
-        arrayList.add(new Sample(R.drawable.deco5));
-        arrayList.add(new Sample(R.drawable.deco7));
-        arrayList.add(new Sample(R.drawable.deco8));
-        arrayList.add(new Sample(R.drawable.deco9));
-        arrayList.add(new Sample(R.drawable.deco10));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
         return arrayList;
     }
 

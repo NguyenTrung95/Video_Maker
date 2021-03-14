@@ -36,12 +36,12 @@ public class LightFragment extends Fragment implements StickerAdapter.StickerAda
 
     public ArrayList<Sample> Light() {
         ArrayList<Sample> arrayList = new ArrayList<>();
-        arrayList.add(new Sample(R.drawable.light1));
-        arrayList.add(new Sample(R.drawable.light2));
-        arrayList.add(new Sample(R.drawable.light6));
-        arrayList.add(new Sample(R.drawable.light9));
-        arrayList.add(new Sample(R.drawable.light10));
-        arrayList.add(new Sample(R.drawable.light11));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
         return arrayList;
     }
 

@@ -34,9 +34,8 @@
             <RelativeLayout
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_35sdp"
-                android:layout_marginEnd="@dimen/_35sdp"
-                android:layout_width="match_parent"
+
+                android:layout_width="@dimen/_220sdp"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -105,33 +104,13 @@
 
             </RelativeLayout>
 
-            <androidx.cardview.widget.CardView
+            <ImageView
                 android:id="@id/bt_new_project"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginLeft="@dimen/_35sdp"
-                android:layout_marginRight="@dimen/_35sdp"
-                app:cardBackgroundColor="@color/selected_border"
-                app:cardCornerRadius="@dimen/_22sdp">
-
-                <LinearLayout
-                    android:background="@color/selected_border"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/_4sdp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_36sdp"
-                        android:fontFamily="@font/sf_pro_display_medium"
-                        android:gravity="center_vertical"
-                        android:text="@string/str_new_video"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15sdp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_create_video"
+                android:layout_height="@dimen/_48sdp"/>
 
             <FrameLayout
                 android:id="@+id/admob_banner"

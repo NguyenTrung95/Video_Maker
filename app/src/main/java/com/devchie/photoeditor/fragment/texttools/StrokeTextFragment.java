@@ -5,22 +5,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.devchie.photoeditor.adapter.ColorAdapter;
+import com.devchie.photoeditor.interfaces.StrokeFragmentListener;
+import com.devchie.videomaker.R;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import com.devchie.videomaker.R;
-import com.devchie.photoeditor.adapter.ColorAdapter;
-import com.devchie.photoeditor.interfaces.StrokeFragmentListener;
-import com.devchie.photoeditor.view.RoundFrameLayout;
 
 public class StrokeTextFragment extends Fragment implements ColorAdapter.ColorAdapterListener {
     private ColorAdapter adapter;
 
-    public RoundFrameLayout btn_color_picker_stroke;
+    public LinearLayout btn_color_picker_stroke;
 
     public StrokeFragmentListener listener;
     private RecyclerView recyclerStrokeColor;
@@ -34,7 +36,7 @@ public class StrokeTextFragment extends Fragment implements ColorAdapter.ColorAd
         View inflate = layoutInflater.inflate(R.layout.fragment_text_stroke, viewGroup, false);
         this.recyclerStrokeColor = inflate.findViewById(R.id.recycler_color_stroke);
         this.sbStrokeWidth = (SeekBar) inflate.findViewById(R.id.sb_stroke_width);
-        this.btn_color_picker_stroke = (RoundFrameLayout) inflate.findViewById(R.id.btn_picker_color_stroke);
+        this.btn_color_picker_stroke = (LinearLayout) inflate.findViewById(R.id.btn_picker_color_stroke);
         this.recyclerStrokeColor.setHasFixedSize(true);
         this.recyclerStrokeColor.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         ColorAdapter colorAdapter = new ColorAdapter(getActivity(), this);
@@ -46,9 +48,9 @@ public class StrokeTextFragment extends Fragment implements ColorAdapter.ColorAd
                     public void onClick(DialogInterface dialogInterface, int i, Integer[] numArr) {
                         if (StrokeTextFragment.this.listener != null) {
                             StrokeTextFragment.this.listener.onStrokeColorSelected(i);
-                            StrokeTextFragment.this.btn_color_picker_stroke.getDelegate().setBackgroundColor(i);
+                      /*      StrokeTextFragment.this.btn_color_picker_stroke.getDelegate().setBackgroundColor(i);
                             StrokeTextFragment.this.btn_color_picker_stroke.getDelegate().setStrokeColor(StrokeTextFragment.this.getResources().getColor(R.color.icChecked));
-                        }
+               */         }
                     }
                 }).setNegativeButton( "Cancel",  new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int i) {

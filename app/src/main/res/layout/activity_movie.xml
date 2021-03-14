@@ -33,6 +33,7 @@
             android:layout_above="@id/ads_container"
             android:layout_below="@id/rl1"
             android:gravity="center"
+            android:background="@drawable/bg_edit_photo"
             android:orientation="vertical">
 
             <com.devchie.videomaker.view.radioview.RatioFrameLayout
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:datumRatio="datumWidth"
+
                 app:heightRatio="1.0"
                 app:widthRatio="1.0">
 
@@ -109,6 +111,7 @@
             android:id="@id/ads_container"
             android:layout_width="fill_parent"
             android:layout_height="50.0dip"
+            android:visibility="gone"
             android:layout_above="@id/rl2">
 
             <FrameLayout
@@ -131,27 +134,31 @@
         <RelativeLayout
             android:id="@id/rl2"
             android:layout_width="fill_parent"
-            android:layout_height="180.0dip"
+            android:layout_height="@dimen/_150sdp"
             android:layout_alignParentBottom="true">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@id/viewpagerMovie"
                 android:layout_width="fill_parent"
-                android:layout_height="90.0dip" />
+                android:layout_above="@+id/rl_1"
+                android:layout_height="match_parent" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@id/viewpagerMovie"
-                android:layout_marginTop="16.0dip">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/rl_1">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@id/tablayoutMovie"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     app:tabGravity="fill"
-                    app:tabIconTint="@color/blue"
-                    app:tabIndicatorColor="@color/white"
+                    app:tabMaxWidth="0dp"
+                    app:tabIconTint="@color/black"
+                    android:background="@color/bg_tab_menu"
+                    app:tabTextAppearance="@style/MineCustomTabText"
+                    app:tabIndicatorColor="@color/cl_none"
                     app:tabIndicatorHeight="1.0dip"
                     app:tabMode="fixed" />
             </RelativeLayout>

@@ -17,49 +17,60 @@
 <merge xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:elevation="0.0dip"
+        android:layout_margin="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_8sdp">
     <ImageView
         android:id="@+id/media_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.matisse.internal.ui.widget.CheckView
-        android:id="@+id/check_view"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        <com.matisse.internal.ui.widget.CheckView
+            android:id="@+id/check_view"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
-    <FrameLayout
-        android:visibility="gone"
-        android:id="@+id/checkedViewAlpha"
-        android:layout_width="match_parent"
-        android:background="#402051FF"
-        android:layout_height="match_parent">
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/checkedViewAlpha"
+            android:layout_width="match_parent"
+            android:background="#402051FF"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_checkbox_checked_blue"
+                android:layout_height="32dp" />
+        </FrameLayout>
+
         <ImageView
-            android:layout_width="32dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_checkbox_checked_blue"
-            android:layout_height="32dp" />
-    </FrameLayout>
+            android:id="@+id/gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_gif"
+            android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/gif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:src="@drawable/ic_gif"
-        android:visibility="gone"/>
+        <TextView
+            android:id="@+id/video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/video_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        android:visibility="gone"/>
+
+
 </merge>

@@ -7,6 +7,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
+import com.devchie.videomaker.R;
+
 public class CustomSeekBar extends AppCompatSeekBar {
     private Paint paint;
     private Rect rect;
@@ -30,16 +32,16 @@ public class CustomSeekBar extends AppCompatSeekBar {
 
     public synchronized void onDraw(Canvas canvas) {
         this.rect.set(getThumbOffset() + 0, (getHeight() / 2) - (this.seekbar_height / 2), getWidth() - getThumbOffset(), (getHeight() / 2) + (this.seekbar_height / 2));
-        this.paint.setColor(-7829368);
+        this.paint.setColor(getResources().getColor(R.color.blue_bg));
         canvas.drawRect(this.rect, this.paint);
         if (getProgress() > 50) {
             this.rect.set(getWidth() / 2, (getHeight() / 2) - (this.seekbar_height / 2), (getWidth() / 2) + ((getWidth() / 100) * (getProgress() - 50)), (getHeight() / 2) + (this.seekbar_height / 2));
-            this.paint.setColor(-16711681);
+            this.paint.setColor(getResources().getColor(R.color.blue));
             canvas.drawRect(this.rect, this.paint);
         }
         if (getProgress() < 50) {
             this.rect.set((getWidth() / 2) - ((getWidth() / 100) * (50 - getProgress())), (getHeight() / 2) - (this.seekbar_height / 2), getWidth() / 2, (getHeight() / 2) + (this.seekbar_height / 2));
-            this.paint.setColor(-16711681);
+            this.paint.setColor(getResources().getColor(R.color.blue));
             canvas.drawRect(this.rect, this.paint);
         }
         super.onDraw(canvas);

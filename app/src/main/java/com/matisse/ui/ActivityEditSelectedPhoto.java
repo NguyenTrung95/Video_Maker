@@ -2,6 +2,7 @@ package com.matisse.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,15 +15,19 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devchie.photoeditor.activity.EditPhotoActivity;
+import com.devchie.photoeditor.eventbus.EditerModel;
 import com.devchie.videomaker.R;
 import com.devchie.videomaker.activities.MovieActivity;
 import com.devchie.videomaker.ads.AdmobAds;
 import com.devchie.videomaker.ads.FacebookAds;
 import com.devchie.videomaker.helper.MyConstant;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.matisse.internal.entity.Item;
 import com.matisse.internal.utils.ImageEditCallback;
 import com.matisse.internal.utils.PathUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +65,7 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
             navigationIcon.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         }
         */
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
+        findViewById(R.id.fab).setOnClickListener(view -> {
             onBackPressed();
             }
         );
@@ -87,6 +91,41 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
             finish();*/
         });
         vBack.setOnClickListener(view -> onBackPressed());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EditerModel event) {
+        if(!event.getLink().equals("")){
+            for (int i = 0; i< items.size();i++){
+                if (i == event.getPos()) {
+                    items.get(i).uri = Uri.parse(event.getLink());
+                   // adapter.getItems().get(i).uri = Uri.parse(event.getLink());
+                }
+            }
+            adapter.notifyDataSetChanged();
+
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void createMovie() {
@@ -164,4 +203,19 @@ public class ActivityEditSelectedPhoto extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+ /*   @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == RESULT_OK) {
+            String selected = data.getStringExtra(MyConstant.NEW_URL);
+            int pos = data.getIntExtra(MyConstant.POSITION,0);
+            for (int i = 0; i< items.size();i++){
+                if (i == pos) items.get(i).uri = Uri.parse(selected);
+            }
+            adapter.notifyDataSetChanged();
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }*/
 }

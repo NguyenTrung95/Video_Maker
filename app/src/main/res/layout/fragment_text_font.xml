@@ -5,14 +5,15 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     android:layout_width="match_parent"
     android:layout_height="@dimen/text_tool_top_height"
-    android:background="@color/test11">
+    android:background="@color/white">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_font"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:clipToPadding="false"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp" />
+        android:background="@color/white" />
 </LinearLayout>

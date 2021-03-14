@@ -36,14 +36,14 @@ public class LoveFragment extends Fragment implements StickerAdapter.StickerAdap
 
     private ArrayList<Sample> HeartList() {
         ArrayList<Sample> arrayList = new ArrayList<>();
-        arrayList.add(new Sample(R.drawable.heart1));
-        arrayList.add(new Sample(R.drawable.heart2));
-        arrayList.add(new Sample(R.drawable.heart3));
-        arrayList.add(new Sample(R.drawable.heart5));
-        arrayList.add(new Sample(R.drawable.heart6));
-        arrayList.add(new Sample(R.drawable.heart7));
-        arrayList.add(new Sample(R.drawable.heart8));
-        arrayList.add(new Sample(R.drawable.heart9));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
         return arrayList;
     }
 

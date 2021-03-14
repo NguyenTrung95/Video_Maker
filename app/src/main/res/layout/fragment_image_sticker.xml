@@ -14,6 +14,7 @@
         android:layout_height="35dp"
         app:tabGravity="fill"
         app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="0dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/un_selected_white" />

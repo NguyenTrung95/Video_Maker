@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.devchie.photoeditor.eventbus.EditerModel;
 import com.devchie.videomaker.R;
 import com.matisse.internal.entity.Album;
 import com.matisse.internal.entity.Item;
@@ -36,6 +37,10 @@ import com.matisse.internal.model.SelectedItemCollection;
 import com.matisse.internal.ui.adapter.AlbumMediaAdapter;
 import com.matisse.internal.ui.widget.MediaGridInset;
 import com.matisse.internal.utils.UIUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class MediaSelectionFragment extends Fragment implements
@@ -73,6 +78,10 @@ public class MediaSelectionFragment extends Fragment implements
         if (context instanceof AlbumMediaAdapter.OnMediaClickListener) {
             mOnMediaClickListener = (AlbumMediaAdapter.OnMediaClickListener) context;
         }
+
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Nullable
@@ -88,13 +97,14 @@ public class MediaSelectionFragment extends Fragment implements
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
     }
 
+    private SelectedItemCollection selectedItemCollection =null;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Album album = getArguments().getParcelable(EXTRA_ALBUM);
 
-        mAdapter = new AlbumMediaAdapter(getContext(),
-                mSelectionProvider.provideSelectedItemCollection(), mRecyclerView);
+        selectedItemCollection = mSelectionProvider.provideSelectedItemCollection();
+        mAdapter = new AlbumMediaAdapter(getContext(), mSelectionProvider.provideSelectedItemCollection(), mRecyclerView);
         mAdapter.registerCheckStateListener(this);
         mAdapter.registerOnMediaClickListener(this);
         mRecyclerView.setHasFixedSize(true);
@@ -119,6 +129,8 @@ public class MediaSelectionFragment extends Fragment implements
     public void onDestroyView() {
         super.onDestroyView();
         mAlbumMediaCollection.onDestroy();
+        EventBus.getDefault().unregister(this);
+
     }
 
     public void refreshMediaGrid() {
@@ -140,6 +152,12 @@ public class MediaSelectionFragment extends Fragment implements
     }
 
     @Override
+    public void onResume() {
+        mAdapter.notifyDataSetChanged();
+        super.onResume();
+    }
+
+    @Override
     public void onUpdate() {
         // notify outer Activity that check state changed
         if (mCheckStateListener != null) {
@@ -158,4 +176,14 @@ public class MediaSelectionFragment extends Fragment implements
     public interface SelectionProvider {
         SelectedItemCollection provideSelectedItemCollection();
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EditerModel event) {
+        if(!event.getLink().equals("")){
+            selectedItemCollection = mSelectionProvider.provideSelectedItemCollection();
+            mAdapter.notifyDataSetChanged();
+
+        }
+    };
 }

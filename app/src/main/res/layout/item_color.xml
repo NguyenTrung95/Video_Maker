@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:dist="http://schemas.android.com/apk/distribution"
-             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
-             android:layout_width="wrap_content" android:layout_height="match_parent">
-    <com.devchie.photoeditor.view.RoundFrameLayout
-        android:layout_gravity="center" android:id="@+id/color_section"
-                                                      android:layout_width="38dp" android:layout_height="38dp"
-                                                      android:layout_margin="6dp" app:rv_cornerRadius="4dp"
-                                                      app:rv_strokeWidth="2dp"/>
-</FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/_4sdp"
+    android:layout_marginRight="@dimen/_4sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.devchie.videomaker.view.NewCircleView
+        android:id="@+id/color_section"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        app:rv_cornerRadius="4dp"
+        app:rv_strokeWidth="3dp"  />
+
+    <View
+        android:id="@+id/v_selected"
+        android:layout_width="@dimen/_10sdp"
+        android:background="@color/blue"
+        android:layout_margin="@dimen/_4sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/_2sdp"/>
+</LinearLayout>

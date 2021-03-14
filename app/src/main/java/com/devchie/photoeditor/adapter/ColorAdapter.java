@@ -5,9 +5,12 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.devchie.videomaker.R;
-import com.devchie.photoeditor.view.RoundFrameLayout;
+import com.devchie.videomaker.view.NewCircleView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +31,28 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHol
     }
 
     public ColorViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new ColorViewHolder(LayoutInflater.from(this.context).inflate(R.layout.item_color, viewGroup, false));
+
+        return new ColorViewHolder(LayoutInflater.from(this.context).inflate(R.layout.item_color, viewGroup, false),i);
     }
 
     public void onBindViewHolder(ColorViewHolder colorViewHolder, int i) {
-        if (this.row_selected == i) {
-            colorViewHolder.color_section.getDelegate().setStrokeColor(this.context.getResources().getColor(R.color.icChecked));
-        } else {
-            colorViewHolder.color_section.getDelegate().setStrokeColor(17170445);
+        if (i == 0)  {
+            colorViewHolder.color_section.setBorderColor(this.context.getResources().getColor(R.color.black));
+            colorViewHolder.color_section.setBorderWidth(1);
+           // colorViewHolder.vSelected.setVisibility(View.VISIBLE);
+        }else {
+            colorViewHolder.color_section.setBorderColor(this.context.getResources().getColor(R.color.cl_trans));
+            //colorViewHolder.vSelected.setVisibility(View.INVISIBLE);
         }
-        colorViewHolder.color_section.getDelegate().setBackgroundColor(this.colorList.get(i).intValue());
+
+        if (row_selected == i) {
+            colorViewHolder.vSelected.setVisibility(View.VISIBLE);
+        } else {
+            colorViewHolder.vSelected.setVisibility(View.INVISIBLE);
+        }
+
+
+        colorViewHolder.color_section.setCircleColor(this.colorList.get(i).intValue());
     }
 
     public int getItemCount() {
@@ -45,11 +60,13 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHol
     }
 
     public class ColorViewHolder extends RecyclerView.ViewHolder {
-        RoundFrameLayout color_section;
-
-        public ColorViewHolder(View view) {
+        NewCircleView color_section;
+        View vSelected;
+        public ColorViewHolder(View view,int position) {
             super(view);
             this.color_section =  view.findViewById(R.id.color_section);
+            this.vSelected =  view.findViewById(R.id.v_selected);
+
             view.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     if (ColorViewHolder.this.getAdapterPosition() < ColorAdapter.this.colorList.size()) {

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.devchie.videomaker.R;
 import com.devchie.videomaker.view.RoundViewDelegate;
 
 public class RoundFrameLayout extends FrameLayout {
@@ -28,7 +30,7 @@ public class RoundFrameLayout extends FrameLayout {
             super.onMeasure(i, i2);
             return;
         }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(getWidth(), getHeight()), 1073741824);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(getWidth(), getHeight()), getResources().getColor(R.color.white));
         super.onMeasure(makeMeasureSpec, makeMeasureSpec);
     }
 

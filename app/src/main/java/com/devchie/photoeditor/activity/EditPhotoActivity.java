@@ -1,14 +1,15 @@
 package com.devchie.photoeditor.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -19,11 +20,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -40,8 +42,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.devchie.photoeditor.adapter.ColorAdapter;
-import com.devchie.photoeditor.adapter.ViewPagerAdapter;
 import com.devchie.photoeditor.dialog.DiscardDialog;
+import com.devchie.photoeditor.eventbus.EditerModel;
 import com.devchie.photoeditor.fragment.ColorFragment;
 import com.devchie.photoeditor.fragment.EmojiFragment;
 import com.devchie.photoeditor.fragment.OverlaysFragment;
@@ -66,7 +68,6 @@ import com.devchie.photoeditor.interfaces.FontFragmentListener;
 import com.devchie.photoeditor.interfaces.FormatTextFragmentListener;
 import com.devchie.photoeditor.interfaces.HightLightFragmentListener;
 import com.devchie.photoeditor.interfaces.OverlayListener;
-import com.devchie.photoeditor.interfaces.OverlaysFragmentListener;
 import com.devchie.photoeditor.interfaces.ShadowFragmentListener;
 import com.devchie.photoeditor.interfaces.SpacingFragmentListener;
 import com.devchie.photoeditor.interfaces.StrokeFragmentListener;
@@ -88,6 +89,7 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
+import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -100,7 +102,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         FormatTextFragmentListener, FontFragmentListener,
         HightLightFragmentListener, ColorFragmentListener, SpacingFragmentListener,
         StrokeFragmentListener, ShadowFragmentListener, EmojiFragment.EmojiListener,
-        StickerFragment.StickerFragmentListener, OverlayListener, OverlaysFragmentListener,
+        StickerFragment.StickerFragmentListener, OverlayListener, OverlaysFragment.NewOverlaysFragmentListener,
         TuneFragment.TuneFragmentListener {//TextEditorDialog.TextFragmentListener,
     public static Typeface defaultTypeface;
 
@@ -110,7 +112,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     private ImageView btnAddText;
     private ImageView btnBack;
     private ImageView btnBackTextTools;
-    private RoundFrameLayout btnColorPicker;
+    private ImageView btnColorPicker;
     private ImageView btnFinish;
     private ImageView btnRedo;
     private ImageView btnUndo;
@@ -125,6 +127,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     private int countText = 0;
 
     public int current_tabTool = 0;
+
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private int hueFinal = 1;
     private View imageClose;
@@ -163,7 +166,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     private RelativeLayout rl_color_photo;
 
     public RelativeLayout rl_main_tool;
-    private RelativeLayout rl_photo_tools;
+    private LinearLayout rl_photo_tools;
     private RelativeLayout rl_text_tool;
     private int saturationFinal = 1;
     private SeekBar sbRotatePhoto;
@@ -182,6 +185,8 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     private int widthStroke = 1;
     private String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
 
+    private EditText edtQuotes;
+    private Button btnDone;
     public void onEmoticons() {
     }
 
@@ -204,11 +209,11 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     }
 
     private ViewPagerCustomAdapter  mViewPagerAdapter = null;
+    private ViewPagerCustomAdapter  mViewTextPagerAdapter = null;
 
     public void onCreate(Bundle bundle) {
         //activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        closeKeyboard();
         long currentThreadTimeMillis = SystemClock.currentThreadTimeMillis();
         EditPhotoActivity.super.onCreate(bundle);
         getWindow().setFlags(1024, 1024);
@@ -229,18 +234,48 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         getData();
         Log.d("XXXXXX", "Time4 " + (SystemClock.currentThreadTimeMillis() - currentThreadTimeMillis4));
         long currentThreadTimeMillis5 = SystemClock.currentThreadTimeMillis();
-        setupViewPager(this.viewPagerTextTools);
-        this.tabLayoutTextTools.setupWithViewPager(this.viewPagerTextTools);
-        setupViewPagerImageTools(this.viewPagerImageTools);
+        //setupViewPager(this.viewPagerTextTools);
+        //this.tabLayoutTextTools.setupWithViewPager(this.viewPagerTextTools);
+        //setupViewPagerImageTools(this. );
         this.tablayoutImageTools.setupWithViewPager(this.viewPagerImageTools);
         Log.d("XXXXXX", "Time5 " + (SystemClock.currentThreadTimeMillis() - currentThreadTimeMillis5));
         long currentThreadTimeMillis6 = SystemClock.currentThreadTimeMillis();
-        setupTabIconsTextTool();
+        //setupTabIconsTextTool();
         //setupTabIconsImageTool();
         Log.d("XXXXXX", "Time6 " + (SystemClock.currentThreadTimeMillis() - currentThreadTimeMillis6));
         SystemClock.currentThreadTimeMillis();
 
+        edtQuotes = (EditText)findViewById(R.id.edtQuotes) ;
+
+       btnDone = (Button)findViewById(R.id.btn_done) ;
+
+
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditPhotoActivity.this.mPhotoEditor.addText(edtQuotes.getText().toString(), EditPhotoActivity.this.getResources().getColor(R.color.white));
+                hideKeyboard(EditPhotoActivity.this);
+
+            }
+        });
         initTabBar();
+
+        initTextToolsTabbar();
+    }
+
+    @Override
+    protected void onResume() {
+        /*if (current_tabTool == 0) {
+            viewPagerImageTools.setVisibility(View.GONE);
+            edtQuotes.setVisibility(View.VISIBLE);
+        }
+        else {
+            viewPagerImageTools.setVisibility(View.VISIBLE);
+            edtQuotes.setVisibility(View.GONE);
+
+        }*/
+        super.onResume();
     }
 
     int[] tabsIcons = {
@@ -250,21 +285,132 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
             R.drawable.ic_add_sticker,
             R.drawable.ic_tune};
 
+    int[] tabsTextTools = {
+            R.drawable.ic_font,
+            R.drawable.ic_format,
+            R.drawable.ic_color_f,
+            R.drawable.ic_stroke,
+            R.drawable.ic_hightlight,
+             R.drawable.ic_spacing};
+
+    private final String[] tabText = {"Font","Format","Color","Stroke","Hightlight","Spacing"};
+
+    private void initTextToolsTabbar(){
+
+        mViewTextPagerAdapter = new ViewPagerCustomAdapter(fragmentManager);
+
+
+        FontFragment fontFragment = new FontFragment();
+        fontFragment.setListener(this);
+
+        mViewTextPagerAdapter.addFragment(tabText[0], fontFragment);
+
+        FormatTextFragment formatTextFragment = new FormatTextFragment();
+        formatTextFragment.setListener(this);
+
+        mViewTextPagerAdapter.addFragment(tabText[1],formatTextFragment);
+
+        ColorFragment colorFragment = new ColorFragment();
+        colorFragment.setListener(this);
+        mViewTextPagerAdapter.addFragment(tabText[2],
+                colorFragment
+        );
+
+        StrokeTextFragment strokeTextFragment = new StrokeTextFragment();
+        strokeTextFragment.setListener(this);
+        mViewTextPagerAdapter.addFragment(tabText[3],
+                strokeTextFragment
+        );
+
+
+        HightLightTextFragment hightLightTextFragment = new HightLightTextFragment();
+        hightLightTextFragment.setListener(this);
+        mViewTextPagerAdapter.addFragment(tabText[4],
+                hightLightTextFragment
+        );
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            SpacingTextFragment spacingTextFragment = new SpacingTextFragment();
+            mViewTextPagerAdapter.addFragment(tabText[5],
+                    spacingTextFragment
+            );
+            spacingTextFragment.setListener(this);
+        }
+
+
+        viewPagerTextTools.setAdapter(mViewTextPagerAdapter);
+        if (Build.VERSION.SDK_INT >= 21) {
+            viewPagerTextTools.setOffscreenPageLimit(6);
+        } else {
+            viewPagerTextTools.setOffscreenPageLimit(5);
+        }
+
+        tabLayoutTextTools.setupWithViewPager(viewPagerTextTools);
+
+        //Init
+        for (int i = 0; i <  tabLayoutTextTools.getTabCount();i++) {
+            Drawable drawable = ContextCompat.getDrawable(this, tabsTextTools[i]);
+            drawable.clearColorFilter();
+            tabLayoutTextTools.getTabAt(i).setIcon(tabsTextTools[i]);
+            if(i == 0 ) tabLayoutTextTools.getTabAt(0).getIcon().setColorFilter(ContextCompat.getColor(EditPhotoActivity.this
+                    , R.color.blue), PorterDuff.Mode.SRC_IN);
+        }
+
+        tabLayoutTextTools.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.blue));
+
+        tabLayoutTextTools.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                //tab.getIcon().setTint(getResources().getColor(R.color.blue));
+                int tabIconColor = ContextCompat.getColor(EditPhotoActivity.this, R.color.blue);
+                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                //tab.getIcon().setTint(getResources().getColor(R.color.black));
+                int tabIconColor = ContextCompat.getColor(EditPhotoActivity.this, R.color.black);
+                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        viewPagerTextTools.setCurrentItem(0);
+        //tablayoutImageTools.getTabAt(0).getIcon().setTint(getResources().getColor(R.color.blue));
+
+
+
+    }
     private void initTabBar(){
         mViewPagerAdapter = new ViewPagerCustomAdapter(fragmentManager);
 
         mViewPagerAdapter.addFragment(tabs[0],
                 new Fragment());
-        mViewPagerAdapter.addFragment(tabs[4], new OverlaysFragment());
 
+        OverlaysFragment overlaysFragment = new OverlaysFragment();
+        overlaysFragment.setListener(this);
+
+        mViewPagerAdapter.addFragment(tabs[1],overlaysFragment);
+
+        EmojiFragment emojiFragment = new EmojiFragment();
+        emojiFragment.setEmojiListener(this);
         mViewPagerAdapter.addFragment(tabs[2],
-                new EmojiFragment()
+                emojiFragment
         );
+
+        StickerFragment stickerFragment = new StickerFragment();
+        stickerFragment.setStickerFragmentListener(this);
         mViewPagerAdapter.addFragment(tabs[3],
-                new StickerFragment()
+                stickerFragment
         );
+
+
+        TuneFragment tuneFragment = new TuneFragment();
+        tuneFragment.setTuneFragmentListener(this);
         mViewPagerAdapter.addFragment(tabs[4],
-                new TuneFragment()
+                tuneFragment
         );
         viewPagerImageTools.setAdapter(mViewPagerAdapter);
         viewPagerImageTools.setOffscreenPageLimit(5);
@@ -285,8 +431,16 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 tab.getIcon().setTint(getResources().getColor(R.color.blue));
-                if (tab.getPosition() == 0) viewPagerImageTools.setVisibility(View.GONE);
-                else viewPagerImageTools.setVisibility(View.VISIBLE);
+                current_tabTool = tab.getPosition();
+                if (tab.getPosition() == 0) {
+                    viewPagerImageTools.setVisibility(View.GONE);
+                    edtQuotes.setVisibility(View.VISIBLE);
+                }
+                else {
+                    viewPagerImageTools.setVisibility(View.VISIBLE);
+                    edtQuotes.setVisibility(View.GONE);
+
+                }
 
             }
             @Override
@@ -359,224 +513,6 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     }
 
 
-    private void setupTabIconsTextTool() {
-        TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView.setText("Font");
-        textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_text_font, 0, 0);
-        this.tabLayoutTextTools.getTabAt(0).setCustomView(textView);
-        TextView textView2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView2.setText("Format");
-        textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_text_format, 0, 0);
-        this.tabLayoutTextTools.getTabAt(1).setCustomView(textView2);
-        TextView textView3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView3.setText("Color");
-        textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_color, 0, 0);
-        this.tabLayoutTextTools.getTabAt(2).setCustomView(textView3);
-
-        TextView textView5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView5.setText("Highlight");
-        textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_text_highlight, 0, 0);
-        this.tabLayoutTextTools.getTabAt(3).setCustomView(textView5);
-        TextView textView6 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-        textView6.setText("Shadow");
-        textView6.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_text_shadow, 0, 0);
-        this.tabLayoutTextTools.getTabAt(4).setCustomView(textView6);
-        if (Build.VERSION.SDK_INT >= 21) {
-            TextView textView7 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-            textView7.setText("Spacing");
-            textView7.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_text_spacing, 0, 0);
-            this.tabLayoutTextTools.getTabAt(5).setCustomView(textView7);
-        }
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        FontFragment fontFragment = new FontFragment();
-        fontFragment.setListener(this);
-        viewPagerAdapter.addFrag(fontFragment, "Font");
-        FormatTextFragment formatTextFragment = new FormatTextFragment();
-        viewPagerAdapter.addFrag(formatTextFragment, "Format");
-        formatTextFragment.setListener(this);
-        ColorFragment colorFragment = new ColorFragment();
-        viewPagerAdapter.addFrag(colorFragment, "Color");
-        colorFragment.setListener(this);
-        StrokeTextFragment strokeTextFragment = new StrokeTextFragment();
-        viewPagerAdapter.addFrag(strokeTextFragment, "Stroke");
-        strokeTextFragment.setListener(this);
-        HightLightTextFragment hightLightTextFragment = new HightLightTextFragment();
-        viewPagerAdapter.addFrag(hightLightTextFragment, "Highlight");
-        hightLightTextFragment.setListener(this);
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            SpacingTextFragment spacingTextFragment = new SpacingTextFragment();
-            viewPagerAdapter.addFrag(spacingTextFragment, "Spacing");
-            spacingTextFragment.setListener(this);
-        }
-        viewPager.setAdapter(viewPagerAdapter);
-        if (Build.VERSION.SDK_INT >= 21) {
-            viewPager.setOffscreenPageLimit(6);
-        } else {
-            viewPager.setOffscreenPageLimit(5);
-        }
-    }
-
-
-    @SuppressLint("WrongConstant")
-/*
-    private void setupTabIconsImageTool() {
-        String[] tabs = {"Add text","Overlays","Emoji","Sticker","Tune"};
-        String[] tabsTitles = {
-                getString(R.string.tab_title_1),
-                getString(R.string.tab_title_2),
-                getString(R.string.tab_title_3),
-                getString(R.string.tab_title_4),
-                getString(R.string.tab_title_5)};
-
-
-        int[] tabsIcons = {
-                R.drawable.ic_add_text,
-                R.drawable.ic_overplay,
-                R.drawable.ic_emoji,
-                 R.drawable.ic_add_sticker,
-                R.drawable.ic_tune};
-
-        this.addTextTabIndex = 0;
-
-        for (int i = 0; i < tabsIcons.length; i++) {
-
-            TextView tab_text = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-            tab_text.setText(tabsTitles[i]);
-            tab_text.setCompoundDrawablesWithIntrinsicBounds(0, tabsIcons[i], 0, 0);
-            tablayoutImageTools.getTabAt(i).setCustomView(tab_text);
-        }
-
-        tablayoutImageTools.setTabTextColors(getResources().getColor(R.color.grey_400),getResources().getColor(R.color.blue));
-
-
-
-       *//* for(int i = 0; i < tabs.length; i++){
-            switch (i){
-                case 0:
-                    TextView textView1 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-                    textView1.setTextColor(getResources().getColor(R.color.blue));
-                    textView1.setText(tabs[i]);
-                    textView1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_text, 0, 0);
-                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView1);
-                    break;
-
-                case 1:
-                    TextView textView2 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-                    textView2.setText(tabs[i]);
-                    textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_overplay, 0, 0);
-                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView2);
-                    break;
-
-
-                case 2:
-                    TextView textView3 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-                    textView3.setText(tabs[i]);
-                    textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_emoji, 0, 0);
-                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView3);
-                    break;
-
-
-                case 3:
-                    TextView textView4 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-                    textView4.setText(tabs[i]);
-                    textView4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_add_sticker, 0, 0);
-                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView4);
-                    break;
-
-                case 4:
-                    TextView textView5 = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
-                    textView5.setText(tabs[i]);
-                    textView5.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tune, 0, 0);
-                    this.tablayoutImageTools.getTabAt(i).setCustomView(textView5);
-                    break;
-
-            }
-        }
-*//*
-
-
-        if ((getResources().getConfiguration().screenLayout & 15) == 4) {
-            this.tablayoutImageTools.setTabMode(1);
-        }
-        this.tablayoutImageTools.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-
-            @SuppressLint("ResourceType")
-            public void onTabSelected(TabLayout.Tab tab) {
-                int unused = EditPhotoActivity.this.current_tabTool = tab.getPosition();
-                Log.d("@@", "addOnTabSelectedListener current_tabTool " + EditPhotoActivity.this.current_tabTool);
-                if (tab.getPosition() != EditPhotoActivity.this.addTextTabIndex) {
-                    tab.getPosition();
-                } else if (EditPhotoActivity.this.numberAddedView < 6) {
-                    EditPhotoActivity.this.mPhotoEditor.addText(EditPhotoActivity.this.getString(R.string.doubletap), EditPhotoActivity.this.getResources().getColor(17170443));
-                } else {
-                    Toast.makeText(EditPhotoActivity.this, R.string.maxtext, 0).show();
-                }
-            }
-
-
-            @SuppressLint("ResourceType")
-            public void onTabReselected(TabLayout.Tab tab) {
-                if (tab.getPosition() != EditPhotoActivity.this.addTextTabIndex) {
-                    return;
-                }
-                if (EditPhotoActivity.this.numberAddedView < 6) {
-                    EditPhotoActivity.this.mPhotoEditor.addText(EditPhotoActivity.this.getString(R.string.doubletap), EditPhotoActivity.this.getResources().getColor(17170443));
-                } else {
-                    Toast.makeText(EditPhotoActivity.this, R.string.maxtext, 0).show();
-                }
-            }
-        });
-    }*/
-
-    private void setupViewPagerImageTools(ViewPager viewPager) {
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new Fragment(), "Text");
-     /*   AddTextFragment addTextFragment = new AddTextFragment();
-        viewPagerAdapter.addFrag(addTextFragment, "Sticker");
-        addTextFragment.setAddTextListener(this);*/
-
-        OverlaysFragment overlaysFragment = new OverlaysFragment();
-        viewPagerAdapter.addFrag(overlaysFragment, "Overlays");
-        overlaysFragment.setListener(this);
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            EmojiFragment emojiFragment = new EmojiFragment();
-            viewPagerAdapter.addFrag(emojiFragment, "Emoji");
-            emojiFragment.setEmojiListener(this);
-        }
-
-        StickerFragment stickerFragment = new StickerFragment();
-        viewPagerAdapter.addFrag(stickerFragment, "Sticker");
-        stickerFragment.setStickerFragmentListener(this);
-
-        TuneFragment tuneFragment = new TuneFragment();
-        viewPagerAdapter.addFrag(tuneFragment, "Tunes");
-        tuneFragment.setTuneFragmentListener(this);
-       /* StickerFragment stickerFragment = new StickerFragment();
-        viewPagerAdapter.addFrag(stickerFragment, "Sticker");
-        stickerFragment.setStickerFragmentListener(this);
-        OverlaysFragment overlaysFragment = new OverlaysFragment();
-        viewPagerAdapter.addFrag(overlaysFragment, "Overlays");
-        overlaysFragment.setListener(this);
-        if (Build.VERSION.SDK_INT >= 21) {
-            EmojiFragment emojiFragment = new EmojiFragment();
-            viewPagerAdapter.addFrag(emojiFragment, "Emoji");
-            emojiFragment.setEmojiListener(this);
-        }
-        viewPagerAdapter.addFrag(new Fragment(), "Text");
-        TuneFragment tuneFragment = new TuneFragment();
-        viewPagerAdapter.addFrag(tuneFragment, "Tunes");
-        tuneFragment.setTuneFragmentListener(this);*/
-        viewPager.setAdapter(viewPagerAdapter);
-    }
 
     private void getData() {
         Intent intent2 = getIntent();
@@ -611,7 +547,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         this.btnAddText = (ImageView) findViewById(R.id.btnAddText_toolbar);
         this.rl_text_tool = (RelativeLayout) findViewById(R.id.rl_text_tool);
         this.rl_main_tool = (RelativeLayout) findViewById(R.id.rl_main_tool);
-        this.rl_photo_tools = (RelativeLayout) findViewById(R.id.rl_photo_tool);
+        this.rl_photo_tools = (LinearLayout) findViewById(R.id.ll_photo_tool);
         this.rl_color_photo = (RelativeLayout) findViewById(R.id.rl_color_photo);
         this.rlEdit = (RelativeLayout) findViewById(R.id.relativeEdit);
         this.imgPhotoEditor = (PhotoEditorView) findViewById(R.id.imgPhotoEditor);
@@ -657,7 +593,7 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         this.recyclerPhotoColor = findViewById(R.id.recycler_color_photo);
         this.sbTranparencyPhoto = (SeekBar) findViewById(R.id.seekbar_photo_transparency);
         this.sbRotatePhoto = (SeekBar) findViewById(R.id.seekbar_rotate);
-        this.btnColorPicker = (RoundFrameLayout) findViewById(R.id.btn_picker_color_photo);
+        this.btnColorPicker = (ImageView) findViewById(R.id.btn_picker_color_photo);
     }
 
     @SuppressLint("ResourceType")
@@ -731,17 +667,27 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         File outputMediaFile = getOutputMediaFile();
         try {
             outputMediaFile.createNewFile();
+
+
             SaveSettings build = new SaveSettings.Builder().setClearViewsEnabled(true).setTransparencyEnabled(true).build();
             if (ActivityCompat.checkSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
                 this.mPhotoEditor.saveAsFile(outputMediaFile.getAbsolutePath(), build, new PhotoEditor.OnSaveListener() {
                     public void onFailure(Exception exc) {
+                       String a = "";
                     }
 
                     public void onSuccess(String str) {
-                        EditPhotoActivity.this.listPhoto.set(EditPhotoActivity.this.position, str);
+                       /* EditPhotoActivity.this.listPhoto.set(EditPhotoActivity.this.position, str);
                         EditPhotoActivity.this.intent.putStringArrayListExtra("AFTER", EditPhotoActivity.this.listPhoto);
                         EditPhotoActivity editPhotoActivity = EditPhotoActivity.this;
-                        editPhotoActivity.setResult(115, editPhotoActivity.intent);
+                        editPhotoActivity.setResult(115, editPhotoActivity.intent);*/
+
+                        /*Intent resultData = new Intent();
+                        resultData.putExtra(MyConstant.NEW_URL, str);
+                        resultData.putExtra(MyConstant.POSITION,position);
+                        setResult(RESULT_OK, resultData);*/
+                        EventBus.getDefault().post(new EditerModel(str,position));
+
                         EditPhotoActivity.this.finish();
                     }
                 });
@@ -785,6 +731,8 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
     public void onClickGetEditTextChangeListener(StrokeTextView strokeTextView, RoundFrameLayout roundFrameLayout) {
         this.textViewMain = strokeTextView;
         this.border = roundFrameLayout;
+        edtQuotes.setVisibility(View.VISIBLE);
+
         if (this.countText == 0) {
             ViewAnimation.animationView(this.rl_text_tool);
             this.rl_main_tool.setVisibility(View.GONE);
@@ -1030,60 +978,6 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         }
     }
 
-    public void onPhrases() {
-        if (!this.mPhrasesFragment.isAdded()) {
-            this.mPhrasesFragment.show(getSupportFragmentManager(), this.mPhrasesFragment.getTag());
-        }
-    }
-
-    public void onFood() {
-        if (!this.mFoodFragment.isAdded()) {
-            this.mFoodFragment.show(getSupportFragmentManager(), this.mFoodFragment.getTag());
-        }
-    }
-
-    public void onLove() {
-        if (!this.mLoveFragment.isAdded()) {
-            this.mLoveFragment.show(getSupportFragmentManager(), this.mLoveFragment.getTag());
-        }
-    }
-
-    public void onChristmas() {
-        if (!this.mChristmasFragment.isAdded()) {
-            this.mChristmasFragment.show(getSupportFragmentManager(), this.mChristmasFragment.getTag());
-        }
-    }
-
-    public void onSayings() {
-        if (!this.mSayingFragment.isAdded()) {
-            this.mSayingFragment.show(getSupportFragmentManager(), this.mSayingFragment.getTag());
-        }
-    }
-
-    public void onSummer() {
-        if (!this.mSummerFragment.isAdded()) {
-            this.mSummerFragment.show(getSupportFragmentManager(), this.mSummerFragment.getTag());
-        }
-    }
-
-    public void onWinter() {
-        if (!this.mWinterFragment.isAdded()) {
-            this.mWinterFragment.show(getSupportFragmentManager(), this.mWinterFragment.getTag());
-        }
-    }
-
-    public void onTravel() {
-        if (!this.mTravelFragment.isAdded()) {
-            this.mTravelFragment.show(getSupportFragmentManager(), this.mTravelFragment.getTag());
-        }
-    }
-
-    public void onMotivation() {
-        if (!this.mMotivationFragment.isAdded()) {
-            this.mMotivationFragment.show(getSupportFragmentManager(), this.mMotivationFragment.getTag());
-        }
-    }
-
     public void onBrightnessChosse(int i) {
         this.brightnessFinal = i;
         this.imgPhotoEditor.getSource().setColorFilter(ColorFilterGenerator.adjustColor(this.brightnessFinal, this.saturationFinal, this.constrantFinal, this.hueFinal));
@@ -1142,14 +1036,36 @@ public class EditPhotoActivity extends BaseSplitActivity implements View.OnClick
         }
     }
 
-    public void showKeyboard(){
-        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void closeKeyboard(){
-        InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+    @Override
+    public void onOverlaysFragmentClick(Bitmap bitmap) {
+        int i;
+        int i2;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        if (width > height) {
+            i2 = (int) ((300.0f / ((float) width)) * ((float) height));
+            i = (int) 300.0f;
+        } else {
+            i = (int) ((300.0f / ((float) height)) * ((float) width));
+            i2 = (int) 300.0f;
+        }
+        if (this.numberAddedView < 6) {
+            this.mPhotoEditor.addImage2(Bitmap.createScaledBitmap(bitmap, i, i2, false));
+        } else {
+            Toast.makeText(this, R.string.max_item, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

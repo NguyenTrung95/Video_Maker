@@ -5,22 +5,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SeekBar;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.devchie.photoeditor.adapter.ColorAdapter;
+import com.devchie.photoeditor.interfaces.ColorFragmentListener;
+import com.devchie.videomaker.R;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import com.devchie.videomaker.R;
-import com.devchie.photoeditor.adapter.ColorAdapter;
-import com.devchie.photoeditor.interfaces.ColorFragmentListener;
-import com.devchie.photoeditor.view.RoundFrameLayout;
 
 public class ColorFragment extends Fragment implements ColorAdapter.ColorAdapterListener {
     private ColorAdapter adapterTextColor;
 
-    public RoundFrameLayout btn_color_picker_text;
+    public ImageView btn_color_picker_text;
 
     public ColorFragmentListener listener;
     private RecyclerView recyclerColorText;
@@ -40,7 +42,7 @@ public class ColorFragment extends Fragment implements ColorAdapter.ColorAdapter
         ColorAdapter colorAdapter = new ColorAdapter(getActivity(), this);
         this.adapterTextColor = colorAdapter;
         this.recyclerColorText.setAdapter(colorAdapter);
-        RoundFrameLayout roundFrameLayout =  inflate.findViewById(R.id.btn_picker_color_text);
+        ImageView roundFrameLayout =  inflate.findViewById(R.id.btn_picker_color_text);
         this.btn_color_picker_text = roundFrameLayout;
         roundFrameLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -48,8 +50,9 @@ public class ColorFragment extends Fragment implements ColorAdapter.ColorAdapter
                     public void onClick(DialogInterface dialogInterface, int i, Integer[] numArr) {
                         if (ColorFragment.this.listener != null) {
                             ColorFragment.this.listener.onColorSelected(i);
-                            ColorFragment.this.btn_color_picker_text.getDelegate().setBackgroundColor(i);
-                            ColorFragment.this.btn_color_picker_text.getDelegate().setStrokeColor(ColorFragment.this.getResources().getColor(R.color.icChecked));
+                            roundFrameLayout.setColorFilter(i);
+                           /* ColorFragment.this.btn_color_picker_text.getDelegate().setBackgroundColor(i);
+                            ColorFragment.this.btn_color_picker_text.getDelegate().setStrokeColor(ColorFragment.this.getResources().getColor(R.color.icChecked));*/
                         }
                     }
                 }).setNegativeButton( "Cancel",  new DialogInterface.OnClickListener() {

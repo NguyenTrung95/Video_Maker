@@ -44,7 +44,7 @@ public class Item implements Parcelable {
     public static final String ITEM_DISPLAY_NAME_CAPTURE = "Capture";
     public final long id;
     public final String mimeType;
-    public final Uri uri;
+    public  Uri uri;
     public final long size;
     public final long duration; // only for video, in ms
 

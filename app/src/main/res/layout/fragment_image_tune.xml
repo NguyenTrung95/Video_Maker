@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    android:padding="@dimen/_16sdp"
+    android:paddingLeft="@dimen/_16sdp"
+    android:paddingRight="@dimen/_16sdp"
+    android:layout_marginTop="@dimen/_16sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:orientation="vertical"
@@ -11,60 +13,67 @@
 
     <LinearLayout
         android:weightSum="10"
-        android:padding="@dimen/_6sdp"
+        android:padding="@dimen/_4sdp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:textColor="#333333"
             android:text="Brightness"
+            android:textSize="@dimen/_10sdp"
+            android:layout_gravity="center_vertical"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"/>
 
         <com.devchie.videomaker.view.CustomSeekBar
             android:layout_gravity="center"
             android:id="@+id/sb_brightness"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:thumbTint="@color/blue"
+            android:progressTint="@color/blue"
             android:max="100"
+            android:progressBackgroundTint="@color/blue"
             android:progress="50"
-            android:progressDrawable="@android:color/transparent" />
+            android:progressDrawable="@android:color/transparent"/>
 
         <TextView
             android:id="@+id/tv_brightness"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:text="50"
+            android:layout_gravity="center"
+            android:textAlignment="textEnd"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
         android:weightSum="10"
-        android:padding="@dimen/_6sdp"
+        android:padding="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:textColor="#333333"
             android:layout_width="0dp"
             android:text="Contrast"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="match_parent" />
 
         <com.devchie.videomaker.view.CustomSeekBar
             android:layout_gravity="center"
             android:id="@+id/sb_contrast"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:thumbTint="@color/blue"
+            android:progressTint="@color/blue"
             android:max="100"
             android:progress="50"
             android:progressDrawable="@android:color/transparent" />
@@ -74,66 +83,73 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:text="50"
+            android:textAlignment="textEnd"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
         android:weightSum="10"
-        android:padding="@dimen/_6sdp"
+        android:padding="@dimen/_4sdp"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:textColor="#333333"
             android:layout_width="0dp"
             android:text="Hue"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="match_parent"/>
 
         <com.devchie.videomaker.view.CustomSeekBar
             android:layout_gravity="center"
             android:id="@+id/sb_hue"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:max="100"
+            android:thumbTint="@color/blue"
+            android:progressTint="@color/blue"
             android:progress="50"
             android:progressDrawable="@android:color/transparent" />
 
         <TextView
             android:id="@+id/tv_hue"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="50"
-            android:layout_height="wrap_content" />
+            android:textAlignment="textEnd"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:weightSum="10"
-        android:padding="@dimen/_6sdp"
+        android:padding="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:textColor="#333333"
             android:layout_width="0dp"
             android:text="Saturation"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="match_parent"/>
 
         <com.devchie.videomaker.view.CustomSeekBar
             android:layout_gravity="center"
             android:id="@+id/sb_saturation"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:max="100"
+            android:thumbTint="@color/blue"
+            android:progressTint="@color/blue"
             android:progress="50"
             android:progressDrawable="@android:color/transparent" />
 
@@ -141,6 +157,7 @@
             android:id="@+id/tv_saturation"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:textAlignment="textEnd"
             android:text="50"
             android:layout_height="wrap_content" />
     </LinearLayout>

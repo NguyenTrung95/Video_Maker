@@ -25,7 +25,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoEditor implements BrushViewChangeListener {
+public class  PhotoEditor implements BrushViewChangeListener {
     private static final String TAG = "PhotoEditor";
     private List<View> addedViews;
     private View alignView;

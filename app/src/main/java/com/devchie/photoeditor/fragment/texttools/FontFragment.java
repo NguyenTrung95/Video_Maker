@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.devchie.videomaker.R;
+
 import com.devchie.photoeditor.adapter.FontAdapter;
 import com.devchie.photoeditor.interfaces.FontFragmentListener;
-import com.devchie.photoeditor.view.PickerLayoutManager;
+import com.devchie.videomaker.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,6 @@ public class FontFragment extends Fragment implements FontAdapter.FontAdapterCli
     List<String> fontList;
     FontFragmentListener listener;
     RecyclerView recyclerFont;
-
-    public void onFontItemSelected(String str) {
-    }
 
     private List<String> loadFontList() {
         ArrayList arrayList = new ArrayList();
@@ -100,27 +98,33 @@ public class FontFragment extends Fragment implements FontAdapter.FontAdapterCli
 
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         View inflate = layoutInflater.inflate(R.layout.fragment_text_font, viewGroup, false);
-        PickerLayoutManager pickerLayoutManager = new PickerLayoutManager(getActivity(), 0, false);
+      /*  PickerLayoutManager pickerLayoutManager = new PickerLayoutManager(getActivity(), 0, false);
         pickerLayoutManager.setChangeAlpha(true);
         pickerLayoutManager.setScaleDownBy(0.4f);
-        pickerLayoutManager.setScaleDownDistance(0.8f);
+        pickerLayoutManager.setScaleDownDistance(0.8f);*/
         this.fontList = loadFontList();
         RecyclerView findViewById = inflate.findViewById(R.id.recycler_font);
         this.recyclerFont = findViewById;
         findViewById.setHasFixedSize(true);
-        this.recyclerFont.setLayoutManager(new LinearLayoutManager(getActivity(), 0, false));
+        this.recyclerFont.setLayoutManager(new GridLayoutManager(getActivity(),4));
         FontAdapter fontAdapter2 = new FontAdapter(getActivity(), this, this.fontList);
         this.fontAdapter = fontAdapter2;
         this.recyclerFont.setAdapter(fontAdapter2);
-        new LinearSnapHelper().attachToRecyclerView(this.recyclerFont);
-        this.recyclerFont.setLayoutManager(pickerLayoutManager);
+       // new LinearSnapHelper().attachToRecyclerView(this.recyclerFont);
+     /*   this.recyclerFont.setLayoutManager(pickerLayoutManager);
         pickerLayoutManager.setOnScrollStopListener(new PickerLayoutManager.onScrollStopListener() {
             public void selectedView(int i) {
                 if (FontFragment.this.listener != null) {
                     FontFragment.this.listener.onFontSelected(FontFragment.this.fontList.get(i));
                 }
             }
-        });
+        });*/
         return inflate;
+    }
+
+    @Override
+    public void onFontItemSelected(String str) {
+        FontFragment.this.listener.onFontSelected(str);
+
     }
 }

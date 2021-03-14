@@ -12,21 +12,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.devchie.videomaker.ads.FacebookAds;
-import com.google.android.gms.ads.AdView;
 import com.devchie.videomaker.R;
 import com.devchie.videomaker.ads.AdmobAds;
+import com.devchie.videomaker.ads.FacebookAds;
 import com.devchie.videomaker.dialog.RateDialog;
 import com.devchie.videomaker.helper.Config;
 import com.devchie.videomaker.model.MySharedPreferences;
 
 public class FinalActivity extends BaseSplitActivity implements View.OnClickListener {
     private static final String TAG = FinalActivity.class.getSimpleName();
-    ImageView btnBackFinal;
     private int countAd = 1;
     private int countRate = 3;
     private Boolean firstTime = null;
-    private AdView mAdView;
     Uri uri = null;
     private ImageView videoThumbnail;
 

@@ -128,12 +128,21 @@ public class FormatTextFragment extends Fragment implements View.OnClickListener
             switch (view.getId()) {
                 case R.id.btn_align_center:
                     this.listener.onTextAlign(2);
+                    btnAlignCenter.setColorFilter(getResources().getColor(R.color.blue));
+                    btnAlignLeft.setColorFilter(getResources().getColor(R.color.black));
+                    btnAlignRight.setColorFilter(getResources().getColor(R.color.black));
                     return;
                 case R.id.btn_align_left:
                     this.listener.onTextAlign(1);
+                    btnAlignCenter.setColorFilter(getResources().getColor(R.color.black));
+                    btnAlignLeft.setColorFilter(getResources().getColor(R.color.blue));
+                    btnAlignRight.setColorFilter(getResources().getColor(R.color.black));
                     return;
                 case R.id.btn_align_right:
                     this.listener.onTextAlign(3);
+                    btnAlignCenter.setColorFilter(getResources().getColor(R.color.black));
+                    btnAlignLeft.setColorFilter(getResources().getColor(R.color.black));
+                    btnAlignRight.setColorFilter(getResources().getColor(R.color.blue));
                     return;
                 default:
                     return;

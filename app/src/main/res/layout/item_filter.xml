@@ -32,11 +32,11 @@
                 android:layout_gravity="center_horizontal"
                 android:padding="@dimen/_3sdp"
                 android:gravity="center"
-                android:background="@color/cl_trans"
+                android:background="@drawable/ic_rfilter"
                 android:singleLine="true"
                 android:layout_alignParentBottom="true"
                 android:textColor="@color/colorWhite"
-                android:textSize="12.0sp"
+                android:textSize="@dimen/_11sdp"
                 android:theme="@style/TextBelowImage" />
         </RelativeLayout>
 

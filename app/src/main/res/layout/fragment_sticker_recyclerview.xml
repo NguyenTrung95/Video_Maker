@@ -8,6 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSticker"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

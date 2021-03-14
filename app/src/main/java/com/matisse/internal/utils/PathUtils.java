@@ -73,7 +73,7 @@ public class PathUtils {
             return uri.getPath();
         }
 
-        return null;
+        return uri.getPath();
     }
 
     /**

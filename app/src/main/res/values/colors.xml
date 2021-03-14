@@ -158,7 +158,10 @@
     <color name="preview_bottom_toolbar_bg">#CC000000</color>
     <color name="preview_bottom_size">#61FFFFFF</color>
     <color name="blue">#2051FF</color>
+    <color name="blue_bg">#332051FF</color>
     <color name="bg_tab_menu">#F2F2F2</color>
     <color name="cl_trans">#efedec</color>
+    <color name="cl_none">#00000000</color>
+    <color name="cl_play">#FF0000</color>
 
 </resources>

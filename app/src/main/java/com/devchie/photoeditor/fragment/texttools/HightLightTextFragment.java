@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +25,7 @@ public class HightLightTextFragment extends Fragment implements ColorAdapter.Col
     public String aa = "28";
     private ColorAdapter adapter;
 
-    public RoundFrameLayout btn_color_picker_highlight;
+    public LinearLayout btn_color_picker_highlight;
 
     public HightLightFragmentListener listener;
     private RecyclerView recyclerColorHighLight;
@@ -122,7 +123,7 @@ public class HightLightTextFragment extends Fragment implements ColorAdapter.Col
                 }
             }
         });
-        RoundFrameLayout roundFrameLayout =  inflate.findViewById(R.id.btn_picker_color_highlight);
+        LinearLayout roundFrameLayout =  inflate.findViewById(R.id.btn_picker_color_highlight);
         this.btn_color_picker_highlight = roundFrameLayout;
         roundFrameLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -130,8 +131,8 @@ public class HightLightTextFragment extends Fragment implements ColorAdapter.Col
                     public void onClick(DialogInterface dialogInterface, int i, Integer[] numArr) {
                         if (HightLightTextFragment.this.listener != null) {
                             HightLightTextFragment.this.listener.onHightLightColorSelected(i);
-                            HightLightTextFragment.this.btn_color_picker_highlight.getDelegate().setBackgroundColor(i);
-                            HightLightTextFragment.this.btn_color_picker_highlight.getDelegate().setStrokeColor(HightLightTextFragment.this.getResources().getColor(R.color.icChecked));
+                        /*    HightLightTextFragment.this.btn_color_picker_highlight.getDelegate().setBackgroundColor(i);
+                            HightLightTextFragment.this.btn_color_picker_highlight.getDelegate().setStrokeColor(HightLightTextFragment.this.getResources().getColor(R.color.icChecked));*/
                         }
                     }
                 }).setNegativeButton((CharSequence) "Cancel", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {

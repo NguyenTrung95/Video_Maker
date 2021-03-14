@@ -39,7 +39,7 @@ import java.io.File
 import java.util.*
 
 class SelectedPhotoActivity : BaseSplitActivity() {
-    private var btnAddMore: FloatingActionButton? = null
+    private var btnAddMore: ImageView? = null
     private var btnAddPhoto: LinearLayout? = null
     private var btnEditPhoto: FloatingActionButton? = null
     private var btnMovie: ImageView? = null
@@ -113,7 +113,7 @@ class SelectedPhotoActivity : BaseSplitActivity() {
         llHolderRecyclerView = findViewById<View>(R.id.llRecyclerView) as RoundRectView
         btnEditPhoto = findViewById<View>(R.id.btnEditPhoto) as FloatingActionButton
         btnMovie = findViewById<ImageView>(R.id.movie_add_float) as ImageView
-        btnAddMore = findViewById<View>(R.id.photo_add_float) as FloatingActionButton
+        btnAddMore = findViewById<View>(R.id.photo_add_float) as ImageView
         btnAddPhoto = findViewById<View>(R.id.movie_add) as LinearLayout
         imgPhoto = findViewById<View>(R.id.imageViewPhoto) as ImageView
 
@@ -122,7 +122,7 @@ class SelectedPhotoActivity : BaseSplitActivity() {
         }
 
 
-        findViewById<FloatingActionButton>(R.id.photo_add_float).setOnClickListener {
+        findViewById<ImageView>(R.id.photo_add_float).setOnClickListener {
             addPhoto()
 
         }

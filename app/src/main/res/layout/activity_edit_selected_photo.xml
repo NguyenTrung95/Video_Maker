@@ -49,7 +49,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:paddingHorizontal="16dp"
-                    android:src="@drawable/ic_baseline_check_24" />
+                    android:src="@drawable/ic_tick_square" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -64,14 +64,12 @@
         app:spanCount="3"
         tools:listitem="@layout/item_image_editable" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/blue"
-        app:srcCompat="@drawable/ic_floating"
-        tools:ignore="ContentDescription" />
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@drawable/ic_floating" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

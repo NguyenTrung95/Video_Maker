@@ -1,161 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="90.0dip"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="horizontal">
 
     <HorizontalScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingLeft="4.0dip"
-        android:paddingRight="4.0dip">
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_2sdp"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
+            <ImageView
                 android:id="@id/btn_square"
-                android:layout_width="74.0dip"
-                android:layout_height="74.0dip"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginTop="8.0dip"
-                android:layout_marginRight="4.0dip"
-                android:layout_marginBottom="8.0dip"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
-                app:cardCornerRadius="4.0dip"
-                app:cardUseCompatPadding="false">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/_2sdp"
+                android:src="@drawable/ic_square" />
 
-                <ImageView
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_square" />
 
-                <FrameLayout
-                    android:id="@id/border_1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/border_selected"
-                    android:visibility="gone" />
-            </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/btn_45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_2sdp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_45" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@id/btn916"
-                android:layout_width="74.0dip"
-                android:layout_height="74.0dip"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginTop="8.0dip"
-                android:layout_marginRight="4.0dip"
-                android:layout_marginBottom="8.0dip"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
-                app:cardCornerRadius="4.0dip"
-                app:cardUseCompatPadding="false">
-
-                <ImageView
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_916" />
-
-                <FrameLayout
-                    android:id="@id/border_2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/border_selected"
-                    android:visibility="gone" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@id/btn169"
-                android:layout_width="74.0dip"
-                android:layout_height="74.0dip"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginTop="8.0dip"
-                android:layout_marginRight="4.0dip"
-                android:layout_marginBottom="8.0dip"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
-                app:cardCornerRadius="4.0dip"
-                app:cardUseCompatPadding="false">
-
-                <ImageView
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_169" />
-
-                <FrameLayout
-                    android:id="@id/border_3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/border_selected"
-                    android:visibility="gone" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@id/btn34"
-                android:layout_width="74.0dip"
-                android:layout_height="74.0dip"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginTop="8.0dip"
-                android:layout_marginRight="4.0dip"
-                android:layout_marginBottom="8.0dip"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
-                app:cardCornerRadius="4.0dip"
-                app:cardUseCompatPadding="false">
-
-                <ImageView
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_34" />
-
-                <FrameLayout
-                    android:id="@id/border_4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/border_selected"
-                    android:visibility="gone" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <ImageView
                 android:id="@id/btn43"
-                android:layout_width="74.0dip"
-                android:layout_height="74.0dip"
-                android:layout_marginLeft="4.0dip"
-                android:layout_marginTop="8.0dip"
-                android:layout_marginRight="4.0dip"
-                android:layout_marginBottom="8.0dip"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/backgroundEditActivitySecondary"
-                app:cardCornerRadius="4.0dip"
-                app:cardUseCompatPadding="false">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/_2sdp"
+                android:src="@drawable/ic_43" />
 
-                <ImageView
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_43" />
+            <ImageView
+                android:id="@id/btn916"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/_2sdp"
+                android:src="@drawable/ic_916" />
 
-                <FrameLayout
-                    android:id="@id/border_5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/border_selected"
-                    android:visibility="gone" />
-            </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@id/btn169"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/_2sdp"
+
+                android:src="@drawable/ic_169" />
+
+            <ImageView
+                android:id="@id/btn34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/_2sdp"
+                android:src="@drawable/ic_34" />
+
         </LinearLayout>
     </HorizontalScrollView>
-</LinearLayout>
+</RelativeLayout>

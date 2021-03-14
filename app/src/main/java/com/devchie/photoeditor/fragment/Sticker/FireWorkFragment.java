@@ -36,17 +36,17 @@ public class FireWorkFragment extends Fragment implements StickerAdapter.Sticker
 
     public ArrayList<Sample> FireWorks() {
         ArrayList<Sample> arrayList = new ArrayList<>();
-        arrayList.add(new Sample(R.drawable.firework1));
-        arrayList.add(new Sample(R.drawable.firework2));
-        arrayList.add(new Sample(R.drawable.firework3));
-        arrayList.add(new Sample(R.drawable.firework4));
-        arrayList.add(new Sample(R.drawable.firework5));
-        arrayList.add(new Sample(R.drawable.firework6));
-        arrayList.add(new Sample(R.drawable.firework7));
-        arrayList.add(new Sample(R.drawable.firework8));
-        arrayList.add(new Sample(R.drawable.firework9));
-        arrayList.add(new Sample(R.drawable.firework10));
-        arrayList.add(new Sample(R.drawable.firework11));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
         return arrayList;
     }
 

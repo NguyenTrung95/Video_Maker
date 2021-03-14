@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +21,27 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.devchie.photoeditor.activity.ViewPagerCustomAdapter;
+import com.devchie.videomaker.R;
+import com.devchie.videomaker.UriUtil;
+import com.devchie.videomaker.ads.AdmobAds;
 import com.devchie.videomaker.ads.FacebookAds;
+import com.devchie.videomaker.dialog.PhotoDiscardDialog;
+import com.devchie.videomaker.fragment.Movie.DurationFragment;
+import com.devchie.videomaker.fragment.Movie.FilterFragment;
+import com.devchie.videomaker.fragment.Movie.MusicFragment;
+import com.devchie.videomaker.fragment.Movie.RatioFragment;
+import com.devchie.videomaker.fragment.Movie.TransferFragment;
+import com.devchie.videomaker.helper.DeviceUtils;
+import com.devchie.videomaker.model.FilterItem;
+import com.devchie.videomaker.model.TransferItem;
+import com.devchie.videomaker.view.PlayPauseView;
+import com.devchie.videomaker.view.radioview.RatioDatumMode;
+import com.devchie.videomaker.view.radioview.RatioFrameLayout;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.util.GmsVersion;
 import com.google.android.material.tabs.TabLayout;
@@ -39,22 +57,6 @@ import com.hw.photomovie.render.GLTextureMovieRender;
 import com.hw.photomovie.render.GLTextureView;
 import com.hw.photomovie.timer.IMovieTimer;
 import com.hw.photomovie.util.MLog;
-import com.devchie.videomaker.R;
-import com.devchie.videomaker.UriUtil;
-import com.devchie.videomaker.adaper.ViewPagerAdapter;
-import com.devchie.videomaker.ads.AdmobAds;
-import com.devchie.videomaker.dialog.PhotoDiscardDialog;
-import com.devchie.videomaker.fragment.Movie.DurationFragment;
-import com.devchie.videomaker.fragment.Movie.FilterFragment;
-import com.devchie.videomaker.fragment.Movie.MusicFragment;
-import com.devchie.videomaker.fragment.Movie.RatioFragment;
-import com.devchie.videomaker.fragment.Movie.TransferFragment;
-import com.devchie.videomaker.helper.DeviceUtils;
-import com.devchie.videomaker.model.FilterItem;
-import com.devchie.videomaker.model.TransferItem;
-import com.devchie.videomaker.view.PlayPauseView;
-import com.devchie.videomaker.view.radioview.RatioDatumMode;
-import com.devchie.videomaker.view.radioview.RatioFrameLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -186,11 +188,11 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
         this.mGLTextureView.setOnClickListener(this);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpagerMovie);
         this.viewPagerMovie = viewPager;
-        setupViewPager(viewPager);
+        //setupViewPager(viewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayoutMovie);
         this.tabLayoutMovie = tabLayout;
         tabLayout.setupWithViewPager(this.viewPagerMovie);
-        setupTabIconMovie();
+       // setupTabIconMovie();
         this.tabLayoutMovie.setTabTextColors(getResources().getColor(R.color.un_selected_white), getResources().getColor(R.color.rainbow_yellow));
         this.btnPlayPause.setPlaying(true);
         this.controlContainer = (ViewGroup) findViewById(R.id.control_container);
@@ -205,9 +207,78 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
         this.savingLayout = (ViewGroup) findViewById(R.id.saving_layout);
         this.tvSaving = (TextView) findViewById(R.id.tv_saving);
         hideControl();
+        initTabBar();
     }
 
-    private void setupTabIconMovie() {
+    int[] tabsIcons = {
+            R.drawable.ic_movie_filter,
+            R.drawable.ic_movie_transfer,
+            R.drawable.ic_movie_music,
+            R.drawable.ic_duration_movie,
+            R.drawable.ic_aspect_ratio};
+    private ViewPagerCustomAdapter  mViewPagerAdapter = null;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private String[] tabs = {"Filter","Transition","Music","Time","Canvas"};
+
+    private void initTabBar(){
+        mViewPagerAdapter = new ViewPagerCustomAdapter(fragmentManager);
+
+        FilterFragment filterFragment = new FilterFragment();
+        mViewPagerAdapter.addFragment(tabs[0],filterFragment);
+        filterFragment.setFilterFragmentListener(this);
+
+        TransferFragment transferFragment = new TransferFragment();
+        mViewPagerAdapter.addFragment(tabs[1],transferFragment);
+        transferFragment.setTransferFragmentListener(this);
+
+        MusicFragment musicFragment = new MusicFragment();
+        mViewPagerAdapter.addFragment(tabs[2],musicFragment);
+        musicFragment.setMusicFragmentListener(this);
+
+        DurationFragment durationFragment = new DurationFragment();
+        mViewPagerAdapter.addFragment(tabs[3],durationFragment);
+        durationFragment.setDurationFragmentListener(this);
+
+        RatioFragment ratioFragment = new RatioFragment();
+        mViewPagerAdapter.addFragment(tabs[4],ratioFragment);
+        ratioFragment.RatioFragmentListener(this);
+
+
+        viewPagerMovie.setAdapter(mViewPagerAdapter);
+        viewPagerMovie.setOffscreenPageLimit(5);
+        tabLayoutMovie.setupWithViewPager(viewPagerMovie);
+        viewPagerMovie.setCurrentItem(0);
+
+        //Init
+        for (int i = 0; i <  tabLayoutMovie.getTabCount();i++) {
+            Drawable drawable = ContextCompat.getDrawable(this, tabsIcons[i]);
+            drawable.clearColorFilter();
+            tabLayoutMovie.getTabAt(i).setIcon(tabsIcons[i]);
+        }
+
+        tabLayoutMovie.setTabTextColors(getResources().getColor(R.color.black),getResources().getColor(R.color.blue));
+
+        tabLayoutMovie.getTabAt(0).getIcon().setTint(getResources().getColor(R.color.blue));
+
+        tabLayoutMovie.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getIcon().setTint(getResources().getColor(R.color.blue));
+
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setTint(getResources().getColor(R.color.black));
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+    }
+
+   /* private void setupTabIconMovie() {
         TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, (ViewGroup) null);
         textView.setText(getString(R.string.str_filter));
         textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_movie_filter, 0, 0);
@@ -231,9 +302,9 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
         if ((getResources().getConfiguration().screenLayout & 15) == 1) {
             this.tabLayoutMovie.setTabMode(TabLayout.MODE_SCROLLABLE);
         }
-    }
+    }*/
 
-    private void setupViewPager(ViewPager viewPager) {
+/*    private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         FilterFragment filterFragment = new FilterFragment();
         viewPagerAdapter.addFrag(filterFragment, getString(R.string.str_filter));
@@ -251,7 +322,7 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
         viewPagerAdapter.addFrag(ratioFragment, getString(R.string.str_ratio));
         ratioFragment.RatioFragmentListener(this);
         viewPager.setAdapter(viewPagerAdapter);
-    }
+    }*/
 
     private void initMoviePlayer() {
         this.mMovieRenderer = new GLTextureMovieRender(this.mGLTextureView);
@@ -625,6 +696,10 @@ public class MovieActivity extends BaseSplitActivity implements View.OnClickList
             createVideo(this.mPhotoMovie.getPhotoSource(), this.mMovieType);
         } else if (i == 916) {
             this.ratioFrameLayout.setRatio(RatioDatumMode.valueOf(1), 9.0f, 16.0f);
+            createVideo(this.mPhotoMovie.getPhotoSource(), this.mMovieType);
+        }
+        else if (i == 45) {
+            this.ratioFrameLayout.setRatio(RatioDatumMode.valueOf(1), 4.0f, 5.0f);
             createVideo(this.mPhotoMovie.getPhotoSource(), this.mMovieType);
         }
     }

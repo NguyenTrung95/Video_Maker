@@ -18,7 +18,7 @@
             android:clickable="true"
             android:padding="16.0dip"
             android:src="@drawable/ic_arrow_back_24dp"
-            android:tint="@color/grey_400"
+            android:tint="@color/black"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -43,6 +43,6 @@
             android:layout_centerInParent="true"
             android:tint="@color/blue"
             android:padding="16.0dip"
-            android:src="@drawable/ic_check_white_18dp" />
+            android:src="@drawable/ic_tick_square" />
     </RelativeLayout>
 </RelativeLayout>

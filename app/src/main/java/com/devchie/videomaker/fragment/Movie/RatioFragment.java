@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import com.devchie.videomaker.R;
 
 public class RatioFragment extends Fragment implements View.OnClickListener {
-    private FrameLayout border1;
-    private FrameLayout border2;
-    private FrameLayout border3;
-    private FrameLayout border4;
-    private FrameLayout border5;
     private RatioFragmentListener listener;
+    private ImageView btn11;
+    private ImageView btn45;
+    private ImageView btn169;
+    private ImageView btn916;
+    private ImageView btn34;
+    private ImageView btn43;
+
 
     public interface RatioFragmentListener {
         void onRatio(int i);
@@ -32,12 +37,14 @@ public class RatioFragment extends Fragment implements View.OnClickListener {
         inflate.findViewById(R.id.btn43).setOnClickListener(this);
         inflate.findViewById(R.id.btn169).setOnClickListener(this);
         inflate.findViewById(R.id.btn916).setOnClickListener(this);
-        this.border1 = (FrameLayout) inflate.findViewById(R.id.border_1);
-        this.border2 = (FrameLayout) inflate.findViewById(R.id.border_2);
-        this.border3 = (FrameLayout) inflate.findViewById(R.id.border_3);
-        this.border4 = (FrameLayout) inflate.findViewById(R.id.border_4);
-        this.border5 = (FrameLayout) inflate.findViewById(R.id.border_5);
-        setBorder(0);
+        btn11 = inflate.findViewById(R.id.btn_square);
+        btn34 = inflate.findViewById(R.id.btn34);
+        btn43 = inflate.findViewById(R.id.btn43);
+        btn169 = inflate.findViewById(R.id.btn169);
+        btn916 = inflate.findViewById(R.id.btn916);
+        btn45 = inflate.findViewById(R.id.btn_45);
+        btn45.setOnClickListener(this);
+
         return inflate;
     }
 
@@ -48,40 +55,65 @@ public class RatioFragment extends Fragment implements View.OnClickListener {
                 switch (id) {
                     case R.id.btn169:
                         this.listener.onRatio(169);
-                        setBorder(2);
+                        btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
+                        btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+
+                        return;
+                    case R.id.btn_45:
+                        this.listener.onRatio(45);
+                        btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
                         return;
                     case R.id.btn34:
                         this.listener.onRatio(34);
-                        setBorder(3);
+                        btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
+                        btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
                         return;
                     case R.id.btn43:
                         this.listener.onRatio(43);
-                        setBorder(4);
+                        btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
+                        btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
                         return;
                     case R.id.btn916:
                         this.listener.onRatio(916);
-                        setBorder(1);
+                        btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                        btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
+                        btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
                         return;
                     default:
                         return;
                 }
             } else {
                 this.listener.onRatio(11);
-                setBorder(0);
+                btn11.setColorFilter(ContextCompat.getColor(getContext(),R.color.blue));
+                btn34.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                btn43.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                btn169.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                btn916.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+                btn45.setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
             }
         } else {
             Toast.makeText(getActivity(), getString(R.string.try_again), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void setBorder(int i) {
-        FrameLayout[] frameLayoutArr = {this.border1, this.border2, this.border3, this.border4, this.border5};
-        for (int i2 = 0; i2 < 5; i2++) {
-            if (i2 == i) {
-                frameLayoutArr[i2].setVisibility(View.VISIBLE);
-            } else {
-                frameLayoutArr[i2].setVisibility(View.GONE);
-            }
-        }
-    }
 }

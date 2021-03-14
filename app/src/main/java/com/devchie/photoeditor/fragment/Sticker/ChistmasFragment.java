@@ -36,13 +36,13 @@ public class ChistmasFragment extends Fragment implements StickerAdapter.Sticker
 
     public ArrayList<Sample> ChistmasList() {
         ArrayList<Sample> arrayList = new ArrayList<>();
-        arrayList.add(new Sample(R.drawable.noel1));
-        arrayList.add(new Sample(R.drawable.noel2));
-        arrayList.add(new Sample(R.drawable.noel3));
-        arrayList.add(new Sample(R.drawable.noel4));
-        arrayList.add(new Sample(R.drawable.noel5));
-        arrayList.add(new Sample(R.drawable.noel6));
-        arrayList.add(new Sample(R.drawable.noel7));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
+        arrayList.add(new Sample(R.drawable.default_sticker));
         return arrayList;
     }
 
